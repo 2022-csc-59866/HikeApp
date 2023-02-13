@@ -2,19 +2,18 @@ import './App.css';
 // pages
 import { HomePage } from './pages/HomePage';
 import { HikePage } from './pages/HikePage';
+import { TestPage } from './pages/TestPage';
 
 // router
-import { Route, Routes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
 function App() {
-  return (
-		<div className="app">
-		      <Routes>
-			<Route path="/" element={<HomePage />} />
-			<Route path='/hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry' element={<HikePage /> } />
-		      </Routes>
-		</div>
-	);
+	const routes = useRoutes([
+        { path: '/', element: <HomePage /> },
+        { path: 'hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry', element: <HikePage />},
+		{ path: '/test', element: <TestPage/>},
+    ]);
+	return routes;
 }
 
 export default App;

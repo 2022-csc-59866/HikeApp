@@ -4,14 +4,10 @@ import axios from "axios"
 // router, custom hook to link to a hike
 import { useParams } from "react-router-dom";
 
-// utils
-import {populateHikes} from "../utils/populateHikes";
-
 export const HikePage = () => {
 
     const { hikeLon, hikeLat, hikeCity, hikeState, hikeCountry } = useParams();
-
-    const [ hike, setHikes ] = useState([]);
+    const [ hike, setHike ] = useState(null);
 	
 	useEffect(() => {
 		const handleHikeList = () => {
@@ -20,41 +16,39 @@ export const HikePage = () => {
 				url: 'https://trailapi-trailapi.p.rapidapi.com/activity/',
                 params: {
                   lat: hikeLat,
-                  limit: '25',
+                  limit: '1',
                   lon: hikeLon,
                   radius: '1',
                   city: hikeCity,
                   state: hikeState,
                   country: hikeCountry,
-                  // 'q-activities_activity_type_name_eq': 'hiking'
+                  'q-activities_activity_type_name_eq': 'hiking'
                 },
 				headers: {
-					'X-RapidAPI-Key': process.env.REACT_APP_RAPID_KEY,
+					'X-RapidAPI-Key': process.env.REACT_APP_TRAIL_API_KEY, //works when hardcoded?
 					'X-RapidAPI-Host': process.env.REACT_APP_TRAIL_API_HOST
 				}
 			};
-            const axios_request = axios.request(options);
-            console.log('after');
-        
-            //populate list of hikes with values returned from the request
-            axios_request.then(response => {
-            let hikeList = populateHikes(response.data);
-            setHikes(hikeList);
-            }).catch(error => {
-                console.error(error);
-            });
+    const axios_request = axios.request(options);        
+    //populate list of hikes with values returned from the request
+    axios_request.then(response => {
+      setHike(response.data);
+    }).catch(error => {
+        console.error(error);
+    });
 		}
+
 		handleHikeList();
-	}, [ hikeLon, hikeLat, hikeCity, hikeState, hikeCountry ])
+	}, 
+  [ hikeLon, hikeLat, hikeCity, hikeState, hikeCountry ])
+  
+  console.log(hike);
 
   return (
     <div className="hike-page">
-        <h1>{hike.name}</h1>
-        <p>{hike.description}</p>
+        <h1>{ hike !== null ? Object.values(hike)[0].name : ""}</h1>
+        <p>{ hike !== null ? Object.values(hike)[0].description : ""}</p>
+        {<div>Hello world</div>}
     </div>
   )
-
 }
-
-
-

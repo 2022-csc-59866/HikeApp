@@ -29,7 +29,6 @@ useEffect(() => {
             }
             };
         const axios_request = axios.request(options);
-        console.log('after');
     
         //populate list of hikes with values returned from the request
         axios_request.then(response => {
@@ -46,9 +45,10 @@ useEffect(() => {
     return (
     <div className="home">
         {
-            hikes.map((hike) => {
+            hikes.map((hike, index) => {
                 return (
                 <Hike
+                    key={index}
                     hike={hike}
                 />
                 )
