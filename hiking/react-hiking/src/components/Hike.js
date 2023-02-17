@@ -1,6 +1,9 @@
 // router
 import { Link } from "react-router-dom"
 
+//star component
+import {Star} from "./Star"
+
 export const Hike = ({hike}) => {
   return (
     <div className="hike" style={{ border: '1px solid #29085B' }}>  
@@ -14,6 +17,7 @@ export const Hike = ({hike}) => {
           <li>Longitude: {hike.lon}</li>
           <li>Latitude: {hike.lat}</li>
         </ul>
+        <right><Star id={hike.id}/></right>
       </div>
   )
 }

@@ -45,10 +45,10 @@ useEffect(() => {
     return (
     <div className="home">
         {
+            // index needed to iterate, each hike has its own internal uuid
             hikes.map((hike, index) => {
                 return (
                 <Hike
-                    key={index}
                     hike={hike}
                 />
                 )

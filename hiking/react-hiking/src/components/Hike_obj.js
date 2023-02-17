@@ -1,5 +1,8 @@
+import {v4 as uuidv4} from 'uuid';
+
 export default class Hike_obj{
     // hike = {
+    //   id: automatically generated uuid,
     //   name: str,
     //   city: str,
     //   state: str,
@@ -12,6 +15,7 @@ export default class Hike_obj{
     // }
   
     constructor(name, city, state, country, lat, lon, parent_id, place_id, description) {
+      this.id = uuidv4();
       this.name = name;
       this.city = city;
       this.state = state;
