@@ -23,3 +23,4 @@ export default class Hike_obj{
       this.description = description;
     }
   }
+
