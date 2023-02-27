@@ -1,6 +1,7 @@
 //star icon button
 import { Button, IconButton, ButtonGroup, ButtonToolbar } from 'rsuite';
 import StarIcon from '@rsuite/icons/legacy/Star';
+import '../stylesheets/Star.css';
 
 export function Star({id}) {
     function handleClick(event) {
@@ -17,7 +18,7 @@ export function Star({id}) {
     }
 
     return (
-      <div>
+      <div className='Star'>
         <IconButton id={id} size='lg' icon={<StarIcon />} onClick={handleClick}/>
         </div>
     );

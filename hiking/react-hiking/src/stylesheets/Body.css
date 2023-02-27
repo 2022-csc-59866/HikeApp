@@ -1,0 +1,12 @@
+.Body {
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 2em;
+    border:darkgreen;
+    background-color: rgb(113, 159, 59);
+    color: #fff;
+  }

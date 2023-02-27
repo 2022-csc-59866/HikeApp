@@ -1,0 +1,10 @@
+.Star {
+    box-sizing: border-box;
+    width: 50%;
+    display: flex;
+    justify-content: right;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 2em;
+    color: #fff;
+  }

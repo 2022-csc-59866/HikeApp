@@ -46,9 +46,13 @@ export const HikePage = () => {
 
   return (
     <div className="hike-page">
+      <div class="media" m-3 p-3>
+        <a class="media-left">
+          <img class="rounded" src="https://st4.depositphotos.com/2547313/20580/i/600/depositphotos_205809874-stock-photo-evening-scene-titlis.jpg"/>
+        </a>
         <h1>{ hike !== null ? Object.values(hike)[0].name : ""}</h1>
         <p>{ hike !== null ? Object.values(hike)[0].description : ""}</p>
         {<div>Hello world</div>}
-    </div>
+    </div></div>
   )
 }
