@@ -1,6 +1,6 @@
 .Star {
     box-sizing: border-box;
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: right;
     align-items: baseline;
