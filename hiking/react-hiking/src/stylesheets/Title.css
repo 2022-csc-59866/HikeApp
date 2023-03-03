@@ -8,6 +8,14 @@
     align-items: baseline;
     padding: 1em;
     margin-bottom: 2em;
-    background-color: rgb(113, 159, 59);
+    background-color: #5D9C59;
+    color: #fff;
+  }
+
+  .btn-group
+  {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #5D9C59;
     color: #fff;
   }

@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../stylesheets/HomePage.css';
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // components
 import { Hike } from "../components/Hike";
+
 // utils
 import {populateHikes} from "../utils/populateHikes";
 
@@ -44,21 +47,22 @@ export const HomePage = () => {
     }, [])
 
     return (
-        
-    <div>
-        <div className="home">
+    <div className="home">
+        <div className="container">
         {
             // index needed to iterate, each hike has its own internal uuid
             hikes.map((hike, index) => {
                 return (
-                <Hike
-                    hike={hike}
-                />
+                <div className="card">
+                    <Hike
+                        hike={hike}
+                    /> 
+                </div>
                 )
             })
         }
         </div>
-        
     </div>
+
     )
 }

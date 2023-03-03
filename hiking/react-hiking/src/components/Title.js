@@ -18,7 +18,7 @@ function Title() {
           </div>
         </nav></div>
         <div class="btn-group">
-          <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
           </button>
           <div class="dropdown-menu dropdown-menu-right">

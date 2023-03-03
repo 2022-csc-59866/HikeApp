@@ -1,0 +1,26 @@
+/*  src/Title.css  */
+.HomePage {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #5D9C59;
+    color: #fff;
+  }
+
+  .card{
+    box-sizing: border-box;
+    width: 75%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 1em;
+    margin-bottom: 2em;
+    background-color: #C7E8CA;
+    color: #5D9C59;
+    margin-left: auto;
+    margin-right: auto;
+  }
