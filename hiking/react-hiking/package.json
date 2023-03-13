@@ -2,6 +2,7 @@
   "name": "react-hiking",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:5000", 
   "//": "proxy: http://localhost:5000 needed for flask routing, errors with npm install",
   "dependencies": {
     "@rsuite/icons": "^1.0.2",

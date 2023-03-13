@@ -4,6 +4,7 @@ import axios from "axios"
 // router, custom hook to link to a hike
 import { useParams } from "react-router-dom";
 import { Maps } from '../components/Maps';
+import Directions from "../components/Directions";
 
 export const HikePage = () => {
 
@@ -46,6 +47,7 @@ export const HikePage = () => {
   console.log(hike);
   return (
     <div className="hike-page">
+      <Directions/>
       <div class="media" m-3 p-3>
         <a class="media-left">
         <img class="rounded" src="https://st4.depositphotos.com/2547313/20580/i/600/depositphotos_205809874-stock-photo-evening-scene-titlis.jpg"/>

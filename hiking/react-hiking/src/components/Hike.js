@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import {Star} from "./Star"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Maps } from '../components/Maps';
+import { FlaskGetHookUp } from "./FlaskGetHookUp";
 
 export const Hike = ({hike}) => {
   console.log(hike.lon, hike.lat);
@@ -20,6 +21,7 @@ export const Hike = ({hike}) => {
             <h5 class="media-heading">Coordinates: {hike.lat}, {hike.lon}</h5>
             {hike.description}
             <right><Star id={hike.id}/></right>
+            <right><FlaskGetHookUp/></right>
           </div>
           </span>
         </div>

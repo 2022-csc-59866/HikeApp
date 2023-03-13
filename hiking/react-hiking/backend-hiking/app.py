@@ -1,5 +1,5 @@
 # python -m flask run --host=0.0.0.0
-from flask import Flask
+from flask import Flask, jsonify
 import psycopg2
 from decouple import config
 from flask import Flask, request
@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker #, relationship, backref
 from sqlalchemy.sql import func
 from sqlalchemy.ext.declarative import declarative_base
 from models.hike_model import Hike
+from serialize_util import serialize_sqlalchemy_objects_to_dictionary
 # from sqlalchemy.ext.hybrid import hybrid_property
 
 USERNAME_PSQL = config('USERNAME_PSQL', default='')
@@ -29,50 +30,30 @@ engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(USERNAME_PSQL,
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Write queries here
-new_hike = Hike(name="TEST", description="TEST TEST HIKE HIKE",
-                city="NYC", country="USA", latitude=-0.2, longitude=-0.0)
+# # Write queries here
+# new_hike = Hike(name="TEST", description="TEST TEST HIKE HIKE HIKE",
+#                 city="NYC", country="USA", latitude=-0.555, longitude=-0.0)
 
-session.add(new_hike)
-#commit changes
-session.commit()
+# session.add(new_hike)
+# #commit changes
+# session.commit()
 
-hikes = session.query(Hike).all()
+# hikes = session.query(Hike).all()
+
+# test get route
+@app.route("/search", methods=["GET"])
+def search():
+    limit = 10
+    if limit in request.args:
+        limit = request.args["limit"]
+
+    hikes = session.query(Hike).limit(limit).all()
+    return jsonify(serialize_sqlalchemy_objects_to_dictionary(hikes))
 
 #close session
 session.close()
 
-for hike in hikes:
-    print(str(hike.name) + " ")
-    print(str(hike.description) + " ")
-    print(str(hike.city) + " ")
-    print(str(hike.state) + " ")
-    print(str(hike.country) + " ")
-    print(str(hike.latitude) + " ")
-    print(str(hike.longitude) + "\n")
-
-@app.route("/search", methods=["GET"])
-def search():
-    pass
-    # #check if limit is provided and valid
-    # limit = 10
-    # if "limit" in request.args:
-    #     try:
-    #         limit = int(request.args["limit"])
-    #     except ValueError:
-    #         print("Limit provided not an integer. Custom limit ignored.")
-
-    # # process arguments
-    # hikes_filtered = []
-    # for hike in hikes:
-    #     #check all filters
-    #     hikes_filtered.append(hike)
-
-    #     #check for limit, if reached, break early
-    #     if len(hikes_filtered) >= int(limit):
-    #         break
-
-    # return hikes_filtered
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5000, debug=True)
+

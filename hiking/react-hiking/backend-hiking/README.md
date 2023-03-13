@@ -44,7 +44,7 @@ python app.py
 1. Run Test
 Windows
 ```
-pythom -m pytest
+python -m pytest
 ```
 Mac
 ```
