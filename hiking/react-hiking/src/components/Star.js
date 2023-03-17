@@ -18,8 +18,8 @@ export function Star({id}) {
     }
 
     return (
-      <div className='Star'>
-        <IconButton id={id} size='lg' icon={<StarIcon />} onClick={handleClick}/>
-        </div>
-    );
+        <div className='Star'>
+          <IconButton id={id} size='lg' icon={<StarIcon />} onClick={handleClick}/>
+          </div>
+      );    
   }
