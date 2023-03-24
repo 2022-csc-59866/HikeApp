@@ -3,7 +3,8 @@ import React from 'react';
 import Title from './components/Title';
 import Body from './components/Body';
 
-function App() {
+  function App() {
+
   return( <div className="App">
             <Title />
             <Body/>

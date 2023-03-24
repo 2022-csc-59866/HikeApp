@@ -32,6 +32,9 @@ function Title() {
               <a class="navbar-brand" href="settings">Settings</a>
             </button>
             <button class="dropdown-item" type="button" >
+              <a class="navbar-brand" href="hi">Login</a>
+            </button>
+            <button class="dropdown-item" type="button" >
               <a class="navbar-brand" href="bye">Logout</a>
             </button>
           </div>
