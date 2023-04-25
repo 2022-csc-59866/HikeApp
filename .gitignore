@@ -25,9 +25,9 @@ hiking/react-hiking/yarn-error.log*
 #config file, react
 hiking/react-hiking/.env
 #config file, python
-hiking/react-hiking/backend-hiking/.env
+hiking/backend-hiking/.env
 
 #Flask
-hiking/react-hiking/backend-hiking/env
-hiking/react-hiking/backend-hiking/__pycache__
-hiking/react-hiking/backend-hiking/models/__pycache__
+hiking/backend-hiking/env
+hiking/backend-hiking/__pycache__
+hiking/backend-hiking/models/__pycache__

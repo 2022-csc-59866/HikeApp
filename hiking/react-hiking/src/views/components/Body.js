@@ -1,6 +1,6 @@
 
 import React from 'react'
-import '../stylesheets/Body.css';
+import './Body.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from '../pages/HomePage';
 import { HikePage } from '../pages/HikePage';

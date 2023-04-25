@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../stylesheets/HomePage.css';
+import './HomePage.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 // components
 import { Hike } from "../components/Hike";
 
 // utils
-import {populateHikes} from "../utils/populateHikes";
+import {populateHikes} from "../../services/populateHikes";
 
 export const HomePage = () => {
 

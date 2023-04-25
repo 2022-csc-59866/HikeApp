@@ -13,8 +13,8 @@ from models.album_type import AlbumType
 from models.transit_type import TransitType
 from models.transit_model import Transit
 from models.users_model import User
-from models.user_albums_model import User_Albums
-from serialize_util import serialize_sqlalchemy_objects_to_dictionary
+from models.user_albums_model import User_Albumss
+from services.serialize_util import serialize_sqlalchemy_objects_to_dictionary
 
 USERNAME_PSQL = config('USERNAME_PSQL', default='')
 PASSWORD_PSQL = config('PASSWORD_PSQL', default='')

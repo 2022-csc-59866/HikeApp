@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
-import Title from './components/Title';
-import Body from './components/Body';
+import Title from './views/components/Title';
+import Body from './views/components/Body';
 
   function App() {
 

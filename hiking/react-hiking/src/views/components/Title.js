@@ -1,7 +1,7 @@
 // src/Title.js
 import React from 'react'
 
-import '../stylesheets/Title.css';
+import './Title.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 

@@ -1,4 +1,4 @@
-import Hike_obj from "../components/Hike_obj";
+import Hike_obj from "./Hike_obj";
 
   //get a list of hikes
   export function populateHikes (body){

@@ -1,7 +1,7 @@
 //star icon button
 import { Button, IconButton, ButtonGroup, ButtonToolbar } from 'rsuite';
 import StarIcon from '@rsuite/icons/legacy/Star';
-import '../stylesheets/Star.css';
+import './Star.css';
 
 export function Star({id}) {
     function handleClick(event) {
