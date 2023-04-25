@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from '../pages/HomePage';
 import { HikePage } from '../pages/HikePage';
 import { TestPage } from '../pages/TestPage';
+import { ProfilePage } from '../pages/ProfilePage';
 import  LocalAuthenticate  from '../pages/LocalAuthenticate';
 
 // router
@@ -14,6 +15,8 @@ function Body() {
     const routes = useRoutes([
         { path: '/', element: <HomePage /> },
         { path: '/hi', element: <LocalAuthenticate/> },
+        // TODO: make it dynamic
+        { path: '/profile/:name', element: <ProfilePage /> },
         { path: 'hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry', element: <HikePage />},
 		    { path: '/test', element: <TestPage/>},
     ]);
