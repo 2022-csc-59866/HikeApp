@@ -8,6 +8,9 @@ import { Album } from "../components/Album";
 //images
 import fav from "../../img/fav.png"
 import mountain from "../../img/mountain.svg"
+
+import './ProfilePage.css';
+
 export const ProfilePage = () => {
 
     return (

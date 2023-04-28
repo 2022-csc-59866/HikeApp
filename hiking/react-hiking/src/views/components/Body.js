@@ -11,15 +11,16 @@ import  LocalAuthenticate  from '../pages/LocalAuthenticate';
 // router
 import { useRoutes } from 'react-router-dom';
 
-function Body() {
-    const routes = useRoutes([
-        { path: '/', element: <HomePage /> },
-        { path: '/hi', element: <LocalAuthenticate/> },
-        // TODO: make it dynamic
-        { path: '/profile/:name', element: <ProfilePage /> },
-        { path: 'hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry', element: <HikePage />},
-		    { path: '/test', element: <TestPage/>},
-    ]);
+function Body({hikesResults}) {
+
+  const routes = useRoutes([
+      { path: '/', element: <HomePage hikesList={hikesResults}/> },
+      { path: '/hi', element: <LocalAuthenticate/> },
+      // TODO: make it dynamic
+      { path: '/profile/:name', element: <ProfilePage /> },
+      { path: 'hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry', element: <HikePage />},
+      { path: '/test', element: <TestPage/>},
+  ]);
   return routes;
 };
 

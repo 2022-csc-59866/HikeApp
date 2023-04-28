@@ -1,18 +1,50 @@
 // src/Title.js
 import React from 'react'
+import { useState} from "react";
+
+import { convertLocationToCoord} from '../../services/convertLocationToCoord';
+import { handleHikeList } from '../../services/handleHikeList';
 
 import './Title.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-function Title() {
+
+function Title({setResults}) {
+
+  const [inputValue, setInputValue] = useState();
+  
+
+  function fetchData(value) {
+    console.log("location (before convert function)= " + value);
+    convertLocationToCoord(value).then((coordinates) => {
+      console.log("coordinates " + coordinates);
+      let hikeList = handleHikeList(coordinates[0], coordinates[1]); 
+      return hikeList;
+    }).then((hikeList) => {
+      setResults(hikeList);
+    });
+  };
+
+  const handleChange = (value) => {
+    console.log(value);
+    setInputValue(value);
+    fetchData(value);
+  };
+
+  
   return (
     <div className="Title" >
       <div className="btn-group" role="group">
         <nav className="navbar navbar-light bg-light">
           <div className="container-fluid">
             <form className="d-flex">
-            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+            <input className="form-control me-2" 
+                  type="search" 
+                  placeholder="Search" 
+                  aria-label="Search"   
+                  value={inputValue} 
+                  onChange={(event) => handleChange(event.target.value)}/>
             <button className="btn btn-outline-success" type="submit">Search</button>
             </form>
           </div>
@@ -42,5 +74,5 @@ function Title() {
     </div>
   )
 }
-export default Title
+export default Title;
 
