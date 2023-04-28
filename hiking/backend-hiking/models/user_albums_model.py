@@ -1,5 +1,4 @@
 from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 from models.album_type import AlbumType
 from models.users_model import User
@@ -14,7 +13,6 @@ class User_Albums(Base):
         album_id = Column(String(255),nullable=False, primary_key=True)
         album_name = Column(String(255), nullable=False)
         album_type = Column(Enum(AlbumType), nullable=False)
-        album_hikes = relationship('Album_Hikes', back_populates='user_albums')
 
         def __init__(self, user_id, album_id, album_name="Favorites", album_type=AlbumType.FAVS):
                 self.user_id = user_id
