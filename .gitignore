@@ -29,5 +29,8 @@ hiking/backend-hiking/.env
 
 #Flask
 hiking/backend-hiking/env
+hiking/backend-hiking/services/__pycache__
+hiking/backend-hiking/views/__pycache__
 hiking/backend-hiking/__pycache__
+hiking/backend-hiking/flask_session
 hiking/backend-hiking/models/__pycache__

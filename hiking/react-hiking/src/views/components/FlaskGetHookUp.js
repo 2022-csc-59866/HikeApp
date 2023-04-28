@@ -7,7 +7,7 @@ export function FlaskGetHookUp() {
     function getData() {
         axios({
         method: "GET",
-        url:"/search",
+        url:"/hike/search",
         })
         .then((response) => {
             const res =response.data;

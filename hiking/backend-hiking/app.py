@@ -1,68 +1,97 @@
 # python -m flask run --host=0.0.0.0
+import os
+import flask
+from flask import Flask, jsonify, request
+from flask_session import Session
 
-from flask import Flask, jsonify
-import psycopg2
-from decouple import config
-from flask import Flask, request
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker 
-from sqlalchemy.sql import func
-from sqlalchemy.ext.declarative import declarative_base
-from models.album_hikes_model import Album_Hikes
+import secrets
+import database
+import configuration
+import login_manager
 
-from models.hike_model import Hike
-from models.album_type import AlbumType
-from models.transit_type import TransitType
-from models.transit_model import Transit
-from models.users_model import User
-from models.user_albums_model import User_Albums
-from services.serialize_util import serialize_sqlalchemy_objects_to_dictionary
+from views.authentication import blueprint as auth_blueprint
+from views.hike import blueprint as hike_blueprint
+from services.handle_errors import bad_request, resource_not_found, unauthorized
 
-USERNAME_PSQL = config('USERNAME_PSQL', default='')
-PASSWORD_PSQL = config('PASSWORD_PSQL', default='')
-DB_NAME_PSQL = config('DB_NAME_PSQL', default='')
-DB_PORT_PSQL = config('DB_PORT_PSQL', default='')
-DB_HOST_PSQL = config('DB_HOST_PSQL', default='')
-   
-# #create application
-app = Flask(__name__)
+def create_app(configuration_name: configuration.ConfigurationName) -> flask.app.Flask:
+    """
+    A factory function designed to create a Flask Application.
+    """
 
-#establish a connection
-engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(USERNAME_PSQL, PASSWORD_PSQL, 
-                                                                  DB_HOST_PSQL, DB_NAME_PSQL))
-#start a session
-Session = sessionmaker(bind=engine)
-session = Session()
+    # Initialize the Flask Application.
+    app = flask.Flask(__name__)
 
-# # Write queries here
-# new_hike = Hike(name="Nw Test", description="TEST TEST HIKE HIKE HIKE",
-#                 city="NYC", country="USA", latitude=-0.235, longitude=-0.1231422)
+    #add various app configs so that there are no RuntimeErrors from login_mnager
+    #secret_key is always different, potentially may be an issue with logged sessions
+    app.secret_key = secrets.token_hex(16)
 
-# session.add(new_hike)
-# new_transit = Transit(user_id="1", transit_type=TransitType.BIKE)
-# session.add(new_transit)
-# new_album_hikes = Album_Hikes(album_id="1", hike_name="test", hike_longitude=0.3, hike_latitude=0.0)
-# session.add(new_album_hikes)
-# new_user_albums = User_Albums(user_id="10", album_id="2", album_name="NYC", album_type=AlbumType.CUSTOM)
-# session.add(new_user_albums)
-# new_user = User(user_id="4", first_name="John", last_name="Johnson", username="john-john2",country="USA")
-# session.add(new_user)
-# #commit changes
-session.commit()
+    app.config['SESSION_COOKIE_SECURE'] = False
+    app.config['SESSION_TYPE'] = "filesystem"
 
-# test get route
-@app.route("/search", methods=["GET"])
-def search():
-    limit = 10
-    if limit in request.args:
-        limit = request.args["limit"]
+    app.session_cookie_name = "session_cookie_name"
 
-    hikes = session.query(Hike).limit(limit).all()
-    return jsonify(serialize_sqlalchemy_objects_to_dictionary(hikes))
+    #create flask session
+    sess = Session()
+    sess.init_app(app)
 
-#close session
-session.close()
+    # Load the configuration pertaining to the environment you're in
+    # e.g., development, production, or testing.
+    app.config.from_object(configuration.configuration[configuration_name])
 
+    # Initialize the session manager within the instance of the application.
+    # The session manager is covered in detail here: https://flask-login.readthedocs.io/en/latest/
+    login_manager.login_manager.init_app(app)
+
+    # Rules that end with a slash are “branches”, others are “leaves”.
+    # If strict_slashes is enabled (the default), visiting a branch URL without a
+    # trailing slash will redirect to the URL with a slash appended.
+    app.url_map.strict_slashes = False
+
+    # Load the "auth" routes onto the Flask Application. In loading the
+    # routes, requests starting with "/auth" will be forwarded to the
+    # "auth_blueprint."
+    app.register_blueprint(auth_blueprint, url_prefix="/auth")
+    app.register_blueprint(hike_blueprint, url_prefix="/hike")
+    # TODO: load other blueprints
+
+    # Register an error handler for 400 (Bad Request). The Flask Application
+    # will call the error handler when the application returns a 400
+    # HTTP Status Code.
+    app.register_error_handler(400, bad_request)
+    # Register an error handler for 401 (Unauthorized). The Flask Application
+    # will call the error handler when the application returns a 401
+    # HTTP Status Code.
+    app.register_error_handler(401, bad_request)
+    # Register an error handler for 404 (Not Found). The Flask Application
+    # will call the error handler when the application returns a 404
+    # HTTP Status Code.
+    app.register_error_handler(404, resource_not_found)
+
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        database.session.close()
+
+    #close sessio  
+    # session.close()
+    return app
 
 if __name__ == "__main__":
+    # Retrieve the configuration defined for the environment
+    # (development, production, or testing). The environment is set via the
+    # "ENVIRONMENT" environment variable. We default to the "DEVELOPMENT"
+    # environment if no environment variable is set.
+    configuration_name = (
+        os.environ.get("ENVIRONMENT") or configuration.ConfigurationName.DEVELOPMENT
+    )
+    # Validate that the environment value set via the "ENVIRONMENT" environment
+    # variable is one that we expect (development, production, or testing).
+    if configuration_name not in configuration.configuration:
+        raise RuntimeError(
+            f'No configuration found for "{configuration_name}" environment.'
+        )
+    # Create the application using the "create_app" factory function created above.
+    app = create_app(configuration_name)
+    # Start/Run the application.
     app.run(host="localhost", port=5000, debug=True)
+
+

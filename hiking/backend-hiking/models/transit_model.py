@@ -1,10 +1,7 @@
-from sqlalchemy import Column, String, Integer, DateTime, Float
-from sqlalchemy.orm import sessionmaker #, relationship, backref
-from sqlalchemy.sql import func
+from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Enum
 from models.transit_type import TransitType
-# from models.__init__ import *
 
 Base = declarative_base()
 metadata = Base.metadata
