@@ -17,7 +17,7 @@ function Body({hikesResults}) {
       { path: '/', element: <HomePage hikesList={hikesResults}/> },
       { path: '/hi', element: <LocalAuthenticate/> },
       // TODO: make it dynamic
-      { path: '/profile/:name', element: <ProfilePage /> },
+      { path: '/profile/:email', element: <ProfilePage /> },
       { path: 'hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry', element: <HikePage />},
       { path: '/test', element: <TestPage/>},
   ]);
