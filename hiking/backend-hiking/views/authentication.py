@@ -60,7 +60,6 @@ def signup():
 def login():
     # Parse the JSON data in the request's body.
     login_data = flask.request.get_json()
-
     # Validate that the client provided all required fields.
     required_fields = ["email", "password"]
     for field in required_fields:
@@ -69,8 +68,8 @@ def login():
         if field not in login_data:
             flask.abort(400, description=f"{field} cannot be blank.")
 
+    user = database.session.query(User).filter_by(email=login_data['email']).one()
 
-    user = database.session.query(User).filter_by(email=login_data["email"]).one()
     if not user:
         flask.abort(401, description=f"Incorrect email or password.")
     is_correct_password = pbkdf2_sha256.verify(login_data["password"], user.password)

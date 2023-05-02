@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export function signup({firstName, lastName, email, password}) {
 
-
     function createUser(user) {
         axios({
             method: "POST",
@@ -20,7 +19,7 @@ export function signup({firstName, lastName, email, password}) {
             console.log(res);
             //redirect to user page
             //TODO: currently hardcoded
-            window.location.href = `http://localhost:3000/profile/${email}`;
+            window.location.href = `http://localhost:3000/profile/${user.email}`;
         }).catch((error) => {
             console.log(error.response);
             console.log(error.response.status);
@@ -36,12 +35,10 @@ export function signup({firstName, lastName, email, password}) {
             }
     })}
 
-    const user = new User(firstName, lastName, email, password);
-    console.log(firstName, lastName, email, password);
-    
     if (firstName.length === 0 || lastName.length === 0 || email.length === 0 || password.length === 0){
         alert("All fields are required");
     } else {
+        const user = new User(firstName, lastName, email, password);
         createUser(user);
     }
 }

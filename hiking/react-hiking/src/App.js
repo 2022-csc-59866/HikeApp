@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Title from './views/components/Title';
-import Body from './views/components/Body';
+import Router from './views/components/Router';
 
 import { useState} from "react";
 
@@ -11,7 +11,7 @@ function App() {
 
   return( <div className="App">
             <Title setResults={setHikes}/>
-            <Body hikesResults={hikes}/>
+            <Router hikesResults={hikes}/>
           </div>);
 }
 

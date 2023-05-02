@@ -16,7 +16,9 @@ export const ProfilePage = () => {
     return (
     <div className="home">
         <div class="container-fluid">
+        {/* TODO: Profile info is hardcoded, get it from db */}
         {
+            
             <div className="card">
                 <Profile
                     name={"John"}

@@ -17,5 +17,9 @@
     margin-left: auto;
     margin-right: auto;
     background-color: #5D9C59;
-    color: #fff;
+    color: #ffffff;
   }
+
+  .Logo {
+    width: 40%;
+ }

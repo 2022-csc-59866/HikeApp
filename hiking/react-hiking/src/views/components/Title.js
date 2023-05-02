@@ -1,6 +1,7 @@
 // src/Title.js
 import React from 'react'
 import { useState} from "react";
+import logo from '../../img/logo_mountain.png';
 
 import { convertLocationToCoord} from '../../services/convertLocationToCoord';
 import { handleHikeList } from '../../services/handleHikeList';
@@ -13,7 +14,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 function Title({setResults}) {
 
   const [inputValue, setInputValue] = useState();
-  
 
   function fetchData(value) {
     console.log("location (before convert function)= " + value);
@@ -32,13 +32,15 @@ function Title({setResults}) {
     fetchData(value);
   };
 
-  
+  const isAuthenticated = localStorage.getItem('session_cookie_name');
+ 
   return (
     <div className="Title" >
       <div className="btn-group" role="group">
         <nav className="navbar navbar-light bg-light">
           <div className="container-fluid">
             <form className="d-flex">
+            <a href="/"><img className="Logo" src={logo}/></a>
             <input className="form-control me-2" 
                   type="search" 
                   placeholder="Search" 
@@ -63,12 +65,11 @@ function Title({setResults}) {
             <button class="dropdown-item" type="button" >
               <a class="navbar-brand" href="settings">Settings</a>
             </button>
-            <button class="dropdown-item" type="button" >
-              <a class="navbar-brand" href="hi">Login</a>
-            </button>
-            <button class="dropdown-item" type="button" >
-              <a class="navbar-brand" href="bye">Logout</a>
-            </button>
+            {isAuthenticated ? (
+              <button class="dropdown-item" type="button"> <a class="navbar-brand" href="bye">Logout</a></button>) 
+              : 
+              (<button class="dropdown-item" type="button"><a class="navbar-brand" href="hi">Login</a></button>)
+            }
           </div>
         </div>
     </div>
