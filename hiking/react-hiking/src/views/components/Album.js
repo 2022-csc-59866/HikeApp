@@ -1,15 +1,25 @@
-import React from 'react';
+import './Album.css';
+import React from "react";
+//routing
+import { Link, useNavigate } from 'react-router-dom';
 
-export const Album = ({ userName, albumName, coverUrl }) => {
+export const Album = ({ userName, albumId, albumName, coverUrl }) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // forward albumId as state in the redirect to be accessed in the AlbumPage for the API request
+    navigate(`/profile/album/${albumId}`, {state: { albumId: albumId}} );
+} 
+
   return (
     <div className="album">
       <div className="album-header">
         <div className='card'>
-            <img className="album-cover" src={coverUrl} alt={`${albumName} album`} width="75"
-        height="75" />
-            <a href={userName+"/" + albumName} class="card-link">
-                <p className="album-name">{albumName}</p>
-            </a>
+            <img className="album-cover" src={coverUrl} alt={`${albumName} album`}/>
+            <Link className="link"  onClick={handleSubmit} to={{pathname: "profile/album/" + albumId, state: {albumId}}}>
+              <p className="album-name">{albumName}</p>
+            </Link>
         </div>
       </div>
     </div>

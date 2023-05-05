@@ -11,6 +11,7 @@ import login_manager
 
 from views.authentication import blueprint as auth_blueprint
 from views.hike import blueprint as hike_blueprint
+from views.album_hikes import blueprint as album_hikes_blueprint
 from services.handle_errors import bad_request, resource_not_found, unauthorized
 
 def create_app(configuration_name: configuration.ConfigurationName) -> flask.app.Flask:
@@ -52,6 +53,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     # "auth_blueprint."
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
     app.register_blueprint(hike_blueprint, url_prefix="/hike")
+    app.register_blueprint(album_hikes_blueprint, url_prefix="/album_hikes")
     # TODO: load other blueprints
 
     # Register an error handler for 400 (Bad Request). The Flask Application

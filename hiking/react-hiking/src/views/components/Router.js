@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { HomePage } from '../pages/HomePage';
 import { HikePage } from '../pages/HikePage';
 import { TestPage } from '../pages/TestPage';
+import { AlbumPage } from '../pages/AlbumPage';
 import { ProfilePage } from '../pages/ProfilePage';
 import { LogoutPage } from '../pages/LogoutPage';
 import { SettingsPage } from '../pages/SettingsPage';
@@ -23,19 +24,21 @@ function Router({hikesResults}) {
     <div className="Router">
       <Routes>
         <Route exact path="/" element={<HomePage hikesList={hikesResults}/>} />
-        <Route path="/hi" element={<LocalAuthenticate/>} />
-        <Route path="hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry" element={<HikePage/>} />
-        <Route path="/test" element = {<TestPage/>} />
-        <Route path="/profile" element={
+        <Route exact path="/hi" element={<LocalAuthenticate/>} />
+        <Route exact path="hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry" element={<HikePage/>} />
+        <Route exact path="/test" element = {<TestPage/>} />
+        <Route exact path="/profile" element={
           isAuthenticated ? (<ProfilePage />) : (<Navigate to="/hi" />)
         } />
-        <Route path="/settings" element={
+        <Route exact path="/settings" element={
           isAuthenticated ? (<SettingsPage />) : (<Navigate to="/hi" />)
         } />
-        <Route path="/bye" element={
+        <Route exact path="/bye" element={
           isAuthenticated ? (<LogoutPage />) : (<Navigate to="/hi" />)
         } />
-
+        <Route path="/profile/album/:albumId" element={
+          isAuthenticated ? (<AlbumPage />) : (<Navigate to="/hi" />)
+        } />
       </Routes>
       </div>
    </BrowserRouter>

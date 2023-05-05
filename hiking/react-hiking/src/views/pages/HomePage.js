@@ -3,14 +3,20 @@ import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { IconButton} from 'rsuite';
+import StarIcon from '@rsuite/icons/legacy/Star';
 
 // components
 import { Hike } from "../components/Hike";
 import { handleHikeList } from '../../services/handleHikeList';
+import { AlbumsModal } from "../components/AlbumsModal";
+
+
 
 //hikesList is a list of hike results passed from search results
 //route is Title -> App -> Body -> HomePage
 export function HomePage({hikesList}) {
+    const [openModal, setOpenModal] = useState(false);
 
     const [hikesLoad, setHikesLoad] = useState([]); 
 
@@ -49,6 +55,18 @@ export function HomePage({hikesList}) {
                     <Hike
                         hike={hike}
                     /> 
+                    <div>
+                    {/* Modal per hike */}
+                    <div className="Star">
+                        <right><IconButton size='lg' icon={<StarIcon />}
+                        onClick={() => setOpenModal(true)} 
+                        className='modalButton'>
+                        </IconButton></right>
+                    </div>
+                    <AlbumsModal 
+                    open={openModal} 
+                    onClose={() => setOpenModal(false)} />
+                    </div>
                 </div>
                 )
             })

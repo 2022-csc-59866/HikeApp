@@ -6,7 +6,7 @@ import { Profile } from "../components/Profile";
 import { Album } from "../components/Album";
 
 //images
-import fav from "../../img/fav.png"
+import fav from "../../img/fav.svg"
 import mountain from "../../img/mountain.svg"
 
 import './ProfilePage.css';
@@ -31,19 +31,23 @@ export const ProfilePage = () => {
         {   <div class="container-fluid">
             <div class="card-group">
                 <div className="card">
-                    <Album
+                    <Album 
                         albumName={"Completed"}
+                        albumId={1}
                         // TODO: pass name dynamically
                         userName={"John"}
                         coverUrl={mountain}
+                        className="album-cover"
                     />
                 </div>
                 <div class="card">
                     <Album
                         albumName={"Favorite"}
                         // TODO: pass name dynamically
+                        albumId={2}
                         userName={"John"}
                         coverUrl={fav}
+                        className="album-cover"
                     />
                 </div>
                 {/* TODO: hook button to create new functionality */}

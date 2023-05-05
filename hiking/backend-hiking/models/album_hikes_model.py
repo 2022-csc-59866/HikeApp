@@ -12,10 +12,11 @@ class Album_Hikes(Base):
         hike_name = Column(String(255), nullable=False, primary_key=True)
         hike_longitude = Column(Float, nullable=False, primary_key=True)
         hike_latitude = Column(Float, nullable=False, primary_key=True)
-        album_id = Column(String(255),ForeignKey(User_Albums.album_id), nullable=False, primary_key=True)
+        # album_id = Column(String(255),ForeignKey(User_Albums.album_id), nullable=False, primary_key=True)
+        album_id = Column(String(255), nullable=False, primary_key=True)
 
-        user_albums = relationship('User_Albums', back_populates='album_hikes')
-        album_hikes = relationship('Hikes', back_populates='album_hikes')
+        # user_albums = relationship('User_Albums', back_populates='album_hikes')
+        # album_hikes = relationship('Hikes', back_populates='album_hikes')
 
         def __init__(self, hike_name, hike_longitude, hike_latitude, album_id):
                 self.hike_name = hike_name
