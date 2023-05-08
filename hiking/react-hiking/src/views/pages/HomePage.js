@@ -9,7 +9,8 @@ import StarIcon from '@rsuite/icons/legacy/Star';
 // components
 import { Hike } from "../components/Hike";
 import { handleHikeList } from '../../services/handleHikeList';
-import { AlbumsModal } from "../components/AlbumsModal";
+import  AlbumsModal from "../components/AlbumsModal";
+import { useNavigate } from "react-router";
 
 
 
@@ -17,8 +18,20 @@ import { AlbumsModal } from "../components/AlbumsModal";
 //route is Title -> App -> Body -> HomePage
 export function HomePage({hikesList}) {
     const [openModal, setOpenModal] = useState(false);
-
     const [hikesLoad, setHikesLoad] = useState([]); 
+    const navigate = useNavigate();
+
+    //check if there is a cookie for the user
+    const isAuthenticated = localStorage.getItem('session_cookie_name');
+
+    function addToAlbum() {
+        //user is authenticated -> open modal
+        if (isAuthenticated) {
+            setOpenModal(true);
+        } else { //user is not authenticated, there is no session, navigate to login
+            navigate("/hi");
+        }
+    }
 
     useEffect(() => {
         //always load hikes in Alabama 
@@ -59,7 +72,7 @@ export function HomePage({hikesList}) {
                     {/* Modal per hike */}
                     <div className="Star">
                         <right><IconButton size='lg' icon={<StarIcon />}
-                        onClick={() => setOpenModal(true)} 
+                        onClick={addToAlbum} 
                         className='modalButton'>
                         </IconButton></right>
                     </div>

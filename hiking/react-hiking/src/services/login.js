@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { v4 as uuid } from 'uuid';
 
 export function login({email, password}) {
 
@@ -16,7 +15,7 @@ export function login({email, password}) {
             const res =response.data;
             console.log(res);
             // After successful login
-            localStorage.setItem('session_cookie_name', uuid());
+            localStorage.setItem('session_cookie_name', response.data["cookie"]);
         }).catch((error) => {
             console.log(error.response);
             if (error.response.data.error.code === 401) {

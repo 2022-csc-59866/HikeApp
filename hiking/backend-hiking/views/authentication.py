@@ -17,7 +17,8 @@ def signup():
     user_data = flask.request.get_json()
 
     # Validate that the client provided all required fields.
-    required_fields = ["first_name", "last_name", "email", "password"]
+    required_fields = ["first_name", "last_name", "email", "password", "cookie"]
+
     for field in required_fields:
         # If a required field is missing, return a 400 (Bad Request) HTTP
         # Status Code to clients, signifying that we received a bad request.
@@ -30,11 +31,11 @@ def signup():
                 middle_name=user_data.get("middle_name"), 
                 email=user_data["email"], 
                 password=user_data["password"], 
+                cookie=user_data["cookie"],
                 city=user_data.get("city"), 
                 state=user_data.get("state"), 
                 country=user_data.get("country"))
    
-
     # Add the User to the database and commit the transaction.
     database.session.add(user)
     database.session.commit()
@@ -51,7 +52,8 @@ def signup():
             "id":user.id,
             "city":user.city,
             "state":user.state,
-            "country":user.country
+            "country":user.country,
+            "cookie":user.cookie
         }
     )
 
@@ -75,7 +77,6 @@ def login():
     is_correct_password = pbkdf2_sha256.verify(login_data["password"], user.password)
     if not is_correct_password:
         flask.abort(401, description=f"Incorrect email or password.")
-
     # https://flask-login.readthedocs.io/en/latest/
     flask_login.login_user(user)
     return flask.jsonify(
@@ -84,6 +85,7 @@ def login():
             "middle_name": user.middle_name,
             "last_name": user.last_name,
             "email": user.email,
+            "cookie":user.cookie,
         }
     )
 

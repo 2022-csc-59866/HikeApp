@@ -1,17 +1,39 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
+import { useEffect } from 'react';
 // components
 import { Profile } from "../components/Profile";
 import { Album } from "../components/Album";
-
+import { NewAlbumModal } from '../components/NewAlbumModal';
+import { useState } from 'react';
 //images
 import fav from "../../img/fav.svg"
 import mountain from "../../img/mountain.svg"
 
 import './ProfilePage.css';
+import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
 
 export const ProfilePage = () => {
+    const [openModal, setOpenModal] = useState(false);
+    // const [albums, setAlbums] = useState([]);
+
+    function createAlbum() {
+        setOpenModal(true);
+    }
+
+    // useEffect(() => {
+    //     //always load hikes in Alabama 
+    //     async function retrieveAlbums () {
+    //         const userId = localStorage.getItem('session_cookie_name');
+    //         const albums = await getAlbumIdInfoForUser(userId);
+    //         console.log(albums);
+    //         return albums;
+    //     }
+
+
+    //     setAlbums(retrieveAlbums());
+
+    // }, []); // whats needed in useEffect
 
     return (
     <div className="home">
@@ -50,12 +72,28 @@ export const ProfilePage = () => {
                         className="album-cover"
                     />
                 </div>
+                {/* <div className='custom-albums'>
+                    {
+                    albums.map((album, index) => {
+                    return (
+                    <div className="card">
+                        <Album
+                            albumId={album.album_id}
+                            albumName={album.album_name}
+                        /> 
+                    </div>
+                    )}
+                )}
+                </div> */}
                 {/* TODO: hook button to create new functionality */}
                 <div class="card" >
-                    <button className='add-album'>Create New Album</button>
+                    <button className='modalButton' onClick={createAlbum}>Create New Album</button>
+                    <NewAlbumModal
+                    open={openModal} 
+                    onClose={() => setOpenModal(false)} />
+                    </div>
                 </div>
                 {/* TODO: add more albums dynamically */}
-            </div>
             </div>
         }
         </div>
