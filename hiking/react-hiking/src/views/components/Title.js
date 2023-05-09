@@ -60,15 +60,15 @@ function Title({setResults}) {
               <a class="navbar-brand" href="/">Home</a>
             </button>
             <button class="dropdown-item" type="button">
-              <a class="navbar-brand" href="profile">Profile</a>
+              <a class="navbar-brand" href="/profile">Profile</a>
             </button>
             <button class="dropdown-item" type="button" >
-              <a class="navbar-brand" href="settings">Settings</a>
+              <a class="navbar-brand" href="/settings">Settings</a>
             </button>
             {isAuthenticated ? (
-              <button class="dropdown-item" type="button"> <a class="navbar-brand" href="bye">Logout</a></button>) 
+              <button class="dropdown-item" type="button"> <a class="navbar-brand" href="/bye">Logout</a></button>) 
               : 
-              (<button class="dropdown-item" type="button"><a class="navbar-brand" href="hi">Login</a></button>)
+              (<button class="dropdown-item" type="button"><a class="navbar-brand" href="/hi">Login</a></button>)
             }
           </div>
         </div>

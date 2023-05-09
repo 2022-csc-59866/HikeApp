@@ -1,6 +1,7 @@
 import flask
 from flask import request, jsonify
-import database
+from database import Session
+
 from services.serialize_util import serialize_sqlalchemy_objects_to_dictionary
 from models.hike_model import Hike
 
@@ -13,5 +14,8 @@ def search():
     if limit in request.args:
         limit = request.args["limit"]
 
-    hikes = database.session.query(Hike).limit(limit).all()
+    session = Session()
+    hikes = session.query(Hike).limit(limit).all()
+    session.close()
+    
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(hikes))

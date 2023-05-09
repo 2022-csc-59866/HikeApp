@@ -1,17 +1,15 @@
 import flask
 from flask import request, jsonify
 
-import database
+from database import Session
 from services.serialize_util import serialize_sqlalchemy_objects_to_dictionary
 from models.user_albums_model import User_Albums
 
-# Initialize the authentication blueprint.
+# Initialize the user_albums blueprint.
 blueprint = flask.Blueprint("user_albums", __name__)
 
 @blueprint.route("/get_all_albums", methods=["GET"])
 def get_albums_for_user():
-    print("inside get_albums_for_user()")
-    # print(dir(flask.request))
     print(flask.request.args)
 
     # Parse the JSON data in the request's body.
@@ -25,7 +23,9 @@ def get_albums_for_user():
         if field not in params:
             flask.abort(400, description=f"{field} cannot be blank.")
 
-    albums_for_user = database.session.query(User_Albums).filter_by(user_id=params["user_id"]).all()
+    session = Session()
+    albums_for_user = session.query(User_Albums).filter_by(user_id=params["user_id"]).all()
+    session.close()
 
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(albums_for_user))
 
@@ -46,9 +46,11 @@ def create_custom_empty_album():
                 user_id=album_data["user_id"],
                 album_type=album_data["album_type"], 
                 album_name=album_data["album_name"], )
+    
     # Add the Album to the database and commit the transaction.
-    database.session.add(album)
-    database.session.commit()
+    session = Session()
+    session.add(album)
+    session.commit()
 
     return flask.jsonify(
         {

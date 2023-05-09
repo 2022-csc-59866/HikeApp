@@ -37,9 +37,10 @@ def signup():
                 country=user_data.get("country"))
    
     # Add the User to the database and commit the transaction.
+    # Using database session, differently from other routes works
+    # session = Session() doesn't work for authentication
     database.session.add(user)
     database.session.commit()
-
     flask_login.login_user(user)
 
     # Convert the User database record (SQLAlchemy Object) into a JSON object response.
@@ -70,6 +71,8 @@ def login():
         if field not in login_data:
             flask.abort(400, description=f"{field} cannot be blank.")
 
+    # Using database session, differently from other routes works
+    # session = Session() doesn't work for authentication
     user = database.session.query(User).filter_by(email=login_data['email']).one()
 
     if not user:
@@ -99,4 +102,6 @@ def logout():
 
 @login_manager.login_manager.user_loader
 def load_user(user_id):
+    # Using database session, differently from other routes works
+    # session = Session() doesn't work for authentication
     return database.session.get(User, int(user_id))

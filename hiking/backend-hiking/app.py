@@ -13,6 +13,7 @@ from views.authentication import blueprint as auth_blueprint
 from views.hike import blueprint as hike_blueprint
 from views.album_hikes import blueprint as album_hikes_blueprint
 from views.user_albums import blueprint as user_albums_blueprint
+from views.users import blueprint as users_blueprint
 from services.handle_errors import bad_request, resource_not_found, unauthorized
 
 def create_app(configuration_name: configuration.ConfigurationName) -> flask.app.Flask:
@@ -30,7 +31,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     app.config['SESSION_COOKIE_SECURE'] = False
     app.config['SESSION_TYPE'] = "filesystem"
 
-    app.session_cookie_name = "session_cookie_name"
+    app.session_cookie_name = "session cookie"
 
     #create flask session
     sess = Session()
@@ -52,12 +53,13 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     # Load the "auth" routes onto the Flask Application. In loading the
     # routes, requests starting with "/auth" will be forwarded to the
     # "auth_blueprint."
+    # TODO: load other blueprints
+
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
     app.register_blueprint(hike_blueprint, url_prefix="/hike")
     app.register_blueprint(album_hikes_blueprint, url_prefix="/album_hikes")
     app.register_blueprint(user_albums_blueprint, url_prefix="/user_albums")
-
-    # TODO: load other blueprints
+    app.register_blueprint(users_blueprint, url_prefix="/users")
 
     # Register an error handler for 400 (Bad Request). The Flask Application
     # will call the error handler when the application returns a 400
@@ -76,8 +78,7 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     def shutdown_session(exception=None):
         database.session.close()
 
-    #close sessio  
-    # session.close()
+
     return app
 
 if __name__ == "__main__":

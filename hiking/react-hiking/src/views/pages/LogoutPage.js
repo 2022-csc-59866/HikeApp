@@ -15,14 +15,12 @@ export const LogoutPage = () => {;
         <div className="auth-form-container">
             <h2>Logout</h2>
             <form className="logout-form" onSubmit={handleSubmit}>
-            {/* TODO: Profile info is hardcoded, get it from db */}
             {
                 <div className="card">
                     <Profile
-                        name={"John"}
                         bio={"I like hiking"}
                         avatarUrl={"https://cdn-icons-png.flaticon.com/512/5556/5556468.png"}
-                        completedHikesCount={10}
+                        completedHikes={10}
                     /> 
                 </div>
             }
