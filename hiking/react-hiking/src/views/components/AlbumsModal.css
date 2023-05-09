@@ -99,3 +99,8 @@ img {
     padding: 10px;
     display: block;
   }
+
+.albumList {
+    max-height: 200px; /* Set the desired maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+}

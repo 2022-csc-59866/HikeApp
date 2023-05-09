@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-export function getHikesInAlbum({ albumId }) {
-
-    // console.log("albumid before API call: " + albumId);
-    console.log("album_id: " + `${String(albumId)}`);
+export function getHikesInAlbum(albumId) {
 
     return axios({
       method: "GET",

@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from '../../img/logo_mountain.png';
 import "./AlbumsModal.css";
+import { AlbumInModal } from "./AlbumInModal";
+import { populateUserAlbum } from '../../services/populateUserAlbum';
+import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
 
-// router
-import { Link } from "react-router-dom";
+const AlbumsModal = ({ open, onClose }) => {
+  const [albumsList, setAlbumsList] = useState([]);
 
-export const AlbumsModal = ({ open, onClose }) => {
-  if (!open) return null;
+  useEffect(() => {
+    const getAlbumsList = async () => {
+      const userId = localStorage.getItem('session_cookie_name');
+      const albumsInfo = await getAlbumIdInfoForUser(userId);
+
+      const albumDisplayList = [];
+      for (const albumInfo of albumsInfo) {
+        const album = await populateUserAlbum({ albumInfo });
+        albumDisplayList.push(album);
+      }
+
+      setAlbumsList(albumDisplayList);
+    };
+
+    if (open) {
+      getAlbumsList();
+    }
+  }, [open]);
+
+  if (!open) {
+    return null;
+  }
 
   return (
     <div onClick={onClose} className='overlay'>
@@ -22,22 +45,20 @@ export const AlbumsModal = ({ open, onClose }) => {
             X
           </p>
           <div className='content'>
-            <h2>Selet an Album</h2>
-            <ul className='modal-ul'>
-              {/* populate with user albums */}
-              {/* <li><Link to={`/profile/${album.id}`}>{album.name}</Link></li> */}
-              <li className='modal-li'><Link className="link" to={`/profile/ab`}>ALBUM AB</Link></li>
-              <br/>
-              <li className='modal-li'><Link className="link" to={`/profile/fav`}>fav</Link></li>
-            </ul>
-          </div>
-          <div className='btnContainer'>
-            <button className='btnPrimary'>
-              <span className='bold'>+</span> New Album
-            </button>
+            <h2>Select an Album</h2>
+            <div className='albumList'>
+              {albumsList.map((album, index) => (
+                <div className="card" key={index}>
+                  <AlbumInModal album={album} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
+
+export default AlbumsModal;
+

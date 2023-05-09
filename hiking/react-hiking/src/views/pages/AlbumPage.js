@@ -20,7 +20,7 @@ export const AlbumPage = () => {
     }, [albumId]);
 
     return(
-        <div>
+        <div className='album-page'>
             <h1>Album Page</h1>
             <div >    
                 {hikesInAlbum.map((hike, index) => {

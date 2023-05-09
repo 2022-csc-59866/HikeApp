@@ -2,10 +2,7 @@
 
 import axios from 'axios';
 
-export function getAlbumIdInfoForUser({ userId }) {
-
-    // console.log("userid before API call: " + userId);
-    console.log("user_id: " + `${String(userId)}`);
+export function getAlbumIdInfoForUser(userId) {
 
     return axios({
       method: "GET",
