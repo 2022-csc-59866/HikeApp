@@ -12,3 +12,12 @@
   height: 100%;
   object-fit: cover;
 }
+
+.album-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Two equal-width columns */
+  grid-gap: 10px; /* Gap between grid items */
+}

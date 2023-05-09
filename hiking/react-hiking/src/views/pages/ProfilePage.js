@@ -15,28 +15,30 @@ import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
 
 export const ProfilePage = () => {
     const [openModal, setOpenModal] = useState(false);
-    // const [albums, setAlbums] = useState([]);
+    const [albums, setAlbums] = useState([]);
 
     function createAlbum() {
         setOpenModal(true);
     }
 
-    // useEffect(() => {
-    //     //always load hikes in Alabama 
-    //     async function retrieveAlbums () {
-    //         const userId = localStorage.getItem('session_cookie_name');
-    //         const albums = await getAlbumIdInfoForUser(userId);
-    //         console.log(albums);
-    //         return albums;
-    //     }
+    useEffect(() => {
+        async function retrieveAlbums () {
+            const userId = localStorage.getItem('session_cookie_name');
+            console.log("userID == " + userId);
+            const albums = await getAlbumIdInfoForUser({userId});
+            console.log("albums === " + albums);
+            return albums;
+        }
 
 
-    //     setAlbums(retrieveAlbums());
+        retrieveAlbums().then((fetchedAlbums) => {
+            setAlbums(fetchedAlbums);
+        });
 
-    // }, []); // whats needed in useEffect
+    }, []); // whats needed in useEffect
 
     return (
-    <div className="home">
+    <div className="profile">
         <div class="container-fluid">
         {/* TODO: Profile info is hardcoded, get it from db */}
         {
@@ -51,18 +53,8 @@ export const ProfilePage = () => {
             </div>
         }
         {   <div class="container-fluid">
-            <div class="card-group">
-                <div className="card">
-                    <Album 
-                        albumName={"Completed"}
-                        albumId={1}
-                        // TODO: pass name dynamically
-                        userName={"John"}
-                        coverUrl={mountain}
-                        className="album-cover"
-                    />
-                </div>
-                <div class="card">
+            <div class="card">
+                <div className="album-card">
                     <Album
                         albumName={"Favorite"}
                         // TODO: pass name dynamically
@@ -71,29 +63,20 @@ export const ProfilePage = () => {
                         coverUrl={fav}
                         className="album-cover"
                     />
-                </div>
-                {/* <div className='custom-albums'>
                     {
                     albums.map((album, index) => {
                     return (
-                    <div className="card">
                         <Album
                             albumId={album.album_id}
                             albumName={album.album_name}
+                            coverUrl={mountain}
+                            className="album-cover"
                         /> 
-                    </div>
                     )}
-                )}
-                </div> */}
-                {/* TODO: hook button to create new functionality */}
-                <div class="card" >
-                    <button className='modalButton' onClick={createAlbum}>Create New Album</button>
-                    <NewAlbumModal
-                    open={openModal} 
-                    onClose={() => setOpenModal(false)} />
-                    </div>
+                )}</div>
+                <div><button className='modalButton' onClick={createAlbum}>Create New Album</button></div>
+                <NewAlbumModal open={openModal} onClose={() => setOpenModal(false)} />
                 </div>
-                {/* TODO: add more albums dynamically */}
             </div>
         }
         </div>

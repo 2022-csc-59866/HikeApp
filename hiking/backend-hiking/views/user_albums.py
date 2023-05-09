@@ -8,7 +8,6 @@ from models.user_albums_model import User_Albums
 # Initialize the authentication blueprint.
 blueprint = flask.Blueprint("user_albums", __name__)
 
-# TODO: lint and change to user_albums
 @blueprint.route("/get_all_albums", methods=["GET"])
 def get_albums_for_user():
     print("inside get_albums_for_user()")
@@ -17,7 +16,6 @@ def get_albums_for_user():
 
     # Parse the JSON data in the request's body.
     params = flask.request.args
-    print("1 ?== ", params["user_id"])
     # # Validate that the client provided all required fields.
     required_fields = ["user_id"]
 
@@ -27,7 +25,7 @@ def get_albums_for_user():
         if field not in params:
             flask.abort(400, description=f"{field} cannot be blank.")
 
-    albums_for_user = database.session.query(User_Albums).filter_by(album_id=params["user_id"]).all()
+    albums_for_user = database.session.query(User_Albums).filter_by(user_id=params["user_id"]).all()
 
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(albums_for_user))
 
