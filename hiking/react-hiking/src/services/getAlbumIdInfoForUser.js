@@ -3,13 +3,12 @@
 import axios from 'axios';
 
 export function getAlbumIdInfoForUser(userId) {
-
     return axios({
       method: "GET",
       url: "/user_albums/get_all_albums",
       params: 
         {
-        user_id: `${String(userId)}`,
+        user_id: userId,
       },
     })
       .then((response) => {

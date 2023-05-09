@@ -11,7 +11,6 @@ blueprint = flask.Blueprint("user_albums", __name__)
 @blueprint.route("/get_all_albums", methods=["GET"])
 def get_albums_for_user():
     print(flask.request.args)
-
     # Parse the JSON data in the request's body.
     params = flask.request.args
     # # Validate that the client provided all required fields.
@@ -26,7 +25,7 @@ def get_albums_for_user():
     session = Session()
     albums_for_user = session.query(User_Albums).filter_by(user_id=params["user_id"]).all()
     session.close()
-
+    
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(albums_for_user))
 
 @blueprint.route("/create_custom_empty", methods=["POST"])

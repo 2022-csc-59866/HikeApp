@@ -29,10 +29,9 @@ export const ProfilePage = () => {
     useEffect(() => {
         async function retrieveAlbums () {
             const userId = localStorage.getItem('session_cookie_name');
-            const albums = await getAlbumIdInfoForUser({userId});
+            const albums = await getAlbumIdInfoForUser(userId);
             return albums;
         }
-
         
         retrieveAlbums().then((fetchedAlbums) => {
             setAlbums(fetchedAlbums);
@@ -69,7 +68,7 @@ export const ProfilePage = () => {
                     {
                     albums.map((album, index) => {
                     return (
-                        <Album
+                        <Album key={index}
                             albumId={album.album_id}
                             albumName={album.album_name}
                             coverUrl={mountain}
