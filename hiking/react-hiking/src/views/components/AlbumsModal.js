@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../img/logo_mountain.png';
 import "./AlbumsModal.css";
-import { AlbumInModal } from "./AlbumInModal";
+
+//services
 import { populateUserAlbum } from '../../services/populateUserAlbum';
 import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
+import { addHikeToAlbum } from '../../services/addHikeToAlbum';
 
-const AlbumsModal = ({ open, onClose }) => {
+const AlbumsModal = ({ hike, open, onClose }) => {
   const [albumsList, setAlbumsList] = useState([]);
 
   useEffect(() => {
@@ -31,6 +33,8 @@ const AlbumsModal = ({ open, onClose }) => {
     return null;
   }
 
+  // Object.keys(hike).forEach((prop)=> console.log(prop));
+
   return (
     <div onClick={onClose} className='overlay'>
       <div
@@ -49,10 +53,11 @@ const AlbumsModal = ({ open, onClose }) => {
             <div className='albumList'>
               {albumsList.map((album, index) => (
                 <div className="card" key={index}>
-                  <AlbumInModal album={album} />
+                  <button onClick={ () => addHikeToAlbum(hike, album)}>{album.album_name}</button>
                 </div>
               ))}
             </div>
+            <div><button>Select Album</button></div>
           </div>
         </div>
       </div>

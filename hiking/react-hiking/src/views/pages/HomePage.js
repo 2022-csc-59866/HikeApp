@@ -77,6 +77,7 @@ export function HomePage({hikesList}) {
                         </IconButton></right>
                     </div>
                     <AlbumsModal 
+                    hike = {hike}
                     open={openModal} 
                     onClose={() => setOpenModal(false)} />
                     </div>

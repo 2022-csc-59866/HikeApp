@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import logo from '../../img/logo_mountain.png';
 
-// router
-import { Link, useNavigate } from "react-router-dom";
 import { addNewAlbum } from '../../services/addNewAlbum';
  
 export const NewAlbumModal = ({ open, onClose }) => {
     
     const [albumName, setAlbumName] = useState('');
-    const navigate = useNavigate();
     if (!open) {
         return null;
       }

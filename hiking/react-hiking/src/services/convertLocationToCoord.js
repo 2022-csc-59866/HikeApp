@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-//get coordinates from a location
 export async function convertLocationToCoord(location) {
 
-  // console.log("location (in convert function)= " + location);
-  //remove from component, move to a utility
+  //API call to Google to convert Location name to coodrinates
   const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_COORDINATE_KEY;
   const options = {
     method: 'GET',

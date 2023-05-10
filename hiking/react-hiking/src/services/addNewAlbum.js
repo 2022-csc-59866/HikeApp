@@ -1,5 +1,7 @@
 import axios from 'axios';
 import  Album_obj  from '../services/Album_obj';
+import {v4 as uuidv4} from 'uuid';
+
 
 export function addNewAlbum(name, userId) {
     
@@ -26,6 +28,6 @@ export function addNewAlbum(name, userId) {
             console.log(error.response.headers);
     })}
 
-    const album = new Album_obj(name, userId, "CUSTOM", []);
+    const album = new Album_obj(uuidv4(), name, userId, "CUSTOM", []);
     createEmptyCustomAlbum(album);
 }

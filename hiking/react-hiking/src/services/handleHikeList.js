@@ -9,7 +9,7 @@ export function handleHikeList(lat, lon) {
     url: 'https://trailapi-trailapi.p.rapidapi.com/activity/',
     params: {
         lat: {lat},
-        limit: '5',
+        limit: '20',
         lon: {lon},
         radius: '25',
         'q-activities_activity_type_name_eq': 'hiking'
