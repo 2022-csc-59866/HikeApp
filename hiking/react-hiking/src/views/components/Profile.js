@@ -2,7 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { getUserInfo } from '../../services/getUserInfo';
 
-export const Profile = ({avatarUrl, completedHikes, bio}) => {
+
+export const Profile = ({completedHikes, bio}) => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -27,10 +28,9 @@ export const Profile = ({avatarUrl, completedHikes, bio}) => {
   return (
     <div className="profile">
       <div className="profile-header">
-        {/* Add avatar functionality */}
         <img
           className="profile-avatar"
-          src={avatarUrl} // Use the avatarUrl prop here
+          src={userInfo.avatar_url} 
           alt={`${userInfo.first_name}'s avatar`}
           width="250"
           height="250"

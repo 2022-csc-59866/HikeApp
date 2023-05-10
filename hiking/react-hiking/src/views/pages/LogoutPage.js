@@ -19,7 +19,6 @@ export const LogoutPage = () => {;
                 <div className="card">
                     <Profile
                         bio={"I like hiking"}
-                        avatarUrl={"https://cdn-icons-png.flaticon.com/512/5556/5556468.png"}
                         completedHikes={10}
                     /> 
                 </div>

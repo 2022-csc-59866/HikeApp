@@ -3,7 +3,7 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
 
-export function signup({firstName, lastName, email, password}) {
+export function signup({firstName, lastName, email, password, avatarUrl}) {
 
     function createUser(user) {
         axios({
@@ -15,13 +15,13 @@ export function signup({firstName, lastName, email, password}) {
               "email": `${user.email}`,
               "password": `${user.password}`,
               "cookie": `${user.cookie}`,
+              "avatar_url": `${user.avatarUrl}`
             }
         })
         .then((response) => {
             const res =response.data;
             console.log(res);
             localStorage.setItem('session_cookie_name', response.data["cookie"]);
-
             //redirect to user page
             //TODO: currently hardcoded
             window.location.href = `http://localhost:3000/profile/`;
@@ -44,11 +44,12 @@ export function signup({firstName, lastName, email, password}) {
         })
     }
 
+    console.log("signup function avatar === " + avatarUrl);
     if (firstName.length === 0 || lastName.length === 0 || email.length === 0 || password.length === 0){
         alert("All fields are required");
     } else {
         const session_cookie = uuid();
-        const user = new User(firstName, lastName, email, password, session_cookie);
+        const user = new User(firstName, lastName, email, password, session_cookie, avatarUrl);
         createUser(user);
     }
 }

@@ -31,6 +31,7 @@ class User(UserMixin, Base):
         state = Column(String(2))
         country = Column(String(255))
         cookie = Column(String(255))
+        avatar_url = Column(String(255))
         create_date = Column(DateTime(timezone=True), server_default=func.now())
         update_date = Column(DateTime(timezone=True),
                             server_default=func.now(),
@@ -39,7 +40,7 @@ class User(UserMixin, Base):
         # transit = relationship('Transit', back_populates='users', foreign_keys=user_id)
 
         def __init__(self, first_name, middle_name, last_name, 
-                     email, password, cookie, 
+                     email, password, cookie, avatar_url,
                      city=None, state=None, country=None):
                 self.first_name = first_name
                 self.middle_name = middle_name
@@ -51,3 +52,4 @@ class User(UserMixin, Base):
                 self.state = state
                 self.country = country
                 self.cookie = cookie
+                self.avatar_url = avatar_url

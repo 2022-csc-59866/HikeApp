@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 //functions
 import { signup } from "../../services/signup";
+import { pickRandomAvatar } from "../../services/pickRandomAvatar";
 
 export const Register = (props) => {
     const [email, setEmail] = useState('');
@@ -11,7 +12,8 @@ export const Register = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        signup({firstName, lastName, email, password});
+        const avatar = pickRandomAvatar();
+        signup({firstName:firstName, lastName: lastName, email: email, password: password, avatarUrl: avatar});
     }
 
     return (

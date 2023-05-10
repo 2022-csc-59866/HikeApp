@@ -17,7 +17,7 @@ def signup():
     user_data = flask.request.get_json()
 
     # Validate that the client provided all required fields.
-    required_fields = ["first_name", "last_name", "email", "password", "cookie"]
+    required_fields = ["first_name", "last_name", "email", "password", "cookie", "avatar_url"]
 
     for field in required_fields:
         # If a required field is missing, return a 400 (Bad Request) HTTP
@@ -32,6 +32,7 @@ def signup():
                 email=user_data["email"], 
                 password=user_data["password"], 
                 cookie=user_data["cookie"],
+                avatar_url=user_data["avatar_url"],
                 city=user_data.get("city"), 
                 state=user_data.get("state"), 
                 country=user_data.get("country"))
@@ -54,7 +55,8 @@ def signup():
             "city":user.city,
             "state":user.state,
             "country":user.country,
-            "cookie":user.cookie
+            "cookie":user.cookie,
+            "avatar_url":user.avatar_url
         }
     )
 
@@ -89,6 +91,7 @@ def login():
             "last_name": user.last_name,
             "email": user.email,
             "cookie":user.cookie,
+            "avatar_url":user.avatar_url
         }
     )
 

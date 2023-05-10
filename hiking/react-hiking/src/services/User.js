@@ -6,15 +6,17 @@ export class User{
         state : function (state) {this.state = state;},
         country : function (country) {this.country = country;},
         cookie : function (cookie) {this.cookie = cookie;},
-        albums : function (albumList) {this.albums = albumList;},
+        avatar : function (avatarUrl) {this.avatarUrl = avatarUrl},
+        albums : function (albumList) {this.albums = albumList;}
     };
 
-    constructor(firstName, lastName, email, password, cookie, albumList=[]) {
+    constructor(firstName, lastName, email, password, cookie, avatarUrl, albumList=[]) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.cookie = cookie;
+        this.avatarUrl = avatarUrl;
         this.albums = albumList;
     }
   }
