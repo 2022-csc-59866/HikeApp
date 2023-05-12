@@ -9,6 +9,7 @@ import { addHikeToAlbum } from '../../services/addHikeToAlbum';
 
 const AlbumsModal = ({ hike, open, onClose }) => {
   const [albumsList, setAlbumsList] = useState([]);
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   useEffect(() => {
     const getAlbumsList = async () => {
@@ -33,7 +34,17 @@ const AlbumsModal = ({ hike, open, onClose }) => {
     return null;
   }
 
-  // Object.keys(hike).forEach((prop)=> console.log(prop));
+  const handleAddToAlbum = async (hike, album) => {
+    try {
+      // Perform the addHikeToAlbum function here
+      await addHikeToAlbum(hike, album);
+      // Set the feedback message to indicate success
+      setFeedbackMessage(`Hike added to the ${album.album_name} successfully!`);
+    } catch (error) {
+      // Set the feedback message to indicate an error
+      setFeedbackMessage('Error adding hike to the album.');
+    }
+  };
 
   return (
     <div onClick={onClose} className='overlay'>
@@ -53,11 +64,11 @@ const AlbumsModal = ({ hike, open, onClose }) => {
             <div className='albumList'>
               {albumsList.map((album, index) => (
                 <div className="card" key={index}>
-                  <button onClick={ () => addHikeToAlbum(hike, album)}>{album.album_name}</button>
+                  <button onClick={() => handleAddToAlbum(hike, album)}>{album.album_name}</button>
                 </div>
               ))}
             </div>
-            <div><button>Select Album</button></div>
+            {feedbackMessage && <p>{feedbackMessage}</p>}
           </div>
         </div>
       </div>
@@ -66,4 +77,3 @@ const AlbumsModal = ({ hike, open, onClose }) => {
 }
 
 export default AlbumsModal;
-

@@ -11,16 +11,21 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [directions, setDirections] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
-
-
-  const [isReady, setIsReady] = useState(false);
+  const [isMapReady, setIsMapReady] = useState(false);
 
   const mapContainerRef = useRef(null);
   const directionsServiceRef = useRef(null);
   const directionsRendererRef = useRef(null);
 
   const handleExpand = () => {
-    setIsExpanded(!isExpanded);
+    if (isExpanded) {
+      // If expanding, no need to reset directions state
+      setIsExpanded(false);
+    } else {
+      // If collapsing, reset directions state
+      setIsExpanded(true);
+      setDirections(null);
+    }
   };
 
   const directionsOptions = {
@@ -39,10 +44,10 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
   }
 
   function initMap() {
-    const hikeLocation = new window.google.maps.LatLng(hikeLatitude, hikeLongitude);
+    const newYork = new window.google.maps.LatLng(40.7128,-74.0060);
     const mapOptions = {
-      zoom: 7,
-      center: hikeLocation
+      zoom: 10,
+      center: newYork
     };
 
     const map = new window.google.maps.Map(mapContainerRef.current, mapOptions);
@@ -52,7 +57,7 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
     directionsRendererRef.current.setMap(map);
     directionsRendererRef.current.setPanel(document.getElementById('directionsPanel'));
 
-    setIsReady(true);
+    setIsMapReady(true);
   }
 
   const calcRoute = useCallback((origin, destination) => {
@@ -67,8 +72,8 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
       if (status === 'OK') {
         directionsRendererRef.current.setDirections(response);
         setDirections(response);
-
       } else if (status === 'ZERO_RESULTS') {
+        setDirections("No route");
       }
     });
   }, []);
@@ -90,10 +95,10 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
   }, [hikeLatitude, hikeLongitude]);
 
   useEffect(() => {
-    if (isReady && currentLocation && hikeLocation) {
+    if (isMapReady && currentLocation && hikeLocation) {
       calcRoute(currentLocation, hikeLocation);
     }
-  }, [isReady, currentLocation, hikeLocation, calcRoute]);
+  }, [isMapReady, currentLocation, hikeLocation, calcRoute]);
 
   return (
     <div>
@@ -107,22 +112,24 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
         </select>
       </div>
       <div className='map-container' ref={mapContainerRef} style={{ height: '400px', width: '400px', justifyContent: 'center' }}></div>
+      <div><h3>Directions</h3></div>
       <div id='directionsPanel' className='directionsPanel'>
-        <div className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
-          <h3>Directions</h3>
-          <ul id='expandedButton'>
-            {directions && directions.routes && directions.routes.length > 0 && (
-              directions.routes[0].legs.map((leg, index) => (
-                <li key={index}>
-                  <strong>Step {index + 1}:</strong> {leg.distance.text}, {leg.duration.text}<br />
-                  {leg.instructions}
-                </li>
-              ))
-            )}
-          </ul>
-        </div>
-        <button onClick={handleExpand}>{isExpanded ? 'Collapse' : 'Expand'}</button>
+      <div className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
+        <ul id='expandedButton'>
+          {isExpanded &&
+            directions &&
+            directions.routes &&
+            directions.routes.length > 0 &&
+            directions.routes[0].legs.map((leg, index) => (
+              <li key={index}>
+                <strong>Step {index + 1}:</strong> {leg.distance.text}, {leg.duration.text}<br />
+                {leg.instructions}
+              </li>
+            ))}
+        </ul>
       </div>
+      <button onClick={handleExpand}>{isExpanded ? 'Collapse' : 'Expand'}</button>
+    </div>
     </div>
   );
   

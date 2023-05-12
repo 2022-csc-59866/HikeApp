@@ -12,7 +12,6 @@ export async function convertLocationToCoord(location) {
   const axios_request = axios.request(options);
 
   return axios_request.then(response => {  
-    console.log(response.data);
     if (response.data.status === "OK") {
       let longitude = response.data.results[0].geometry.location.lng;
       let latitude = response.data.results[0].geometry.location.lat;

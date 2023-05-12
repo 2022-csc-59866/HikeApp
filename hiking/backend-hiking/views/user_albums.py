@@ -28,6 +28,26 @@ def get_albums_for_user():
     
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(albums_for_user))
 
+@blueprint.route("/get_album_info", methods=["GET"])
+def get_album_info():
+    print(flask.request.args)
+    # Parse the JSON data in the request's body.
+    params = flask.request.args
+    # # Validate that the client provided all required fields.
+    required_fields = ["album_id"]
+
+    for field in required_fields:
+        # If a required field is missing, return a 400 (Bad Request) HTTP
+        # Status Code to clients, signifying that we received a bad request.
+        if field not in params:
+            flask.abort(400, description=f"{field} cannot be blank.")
+
+    session = Session()
+    albums_for_user = session.query(User_Albums).filter_by(album_id=params["album_id"]).all()
+    session.close()
+    
+    return jsonify(serialize_sqlalchemy_objects_to_dictionary(albums_for_user))
+
 @blueprint.route("/create_custom_empty", methods=["POST"])
 def create_custom_empty_album():
     # Parse the JSON data in the request's body.

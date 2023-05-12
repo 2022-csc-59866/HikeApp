@@ -21,7 +21,6 @@ export function handleHikeList(lat, lon) {
   //populate list of hikes with values returned from the request
   return axios_request.then(response => {
     let hikeList = populateHikes(response.data);
-    hikeList.forEach((hike) => {console.log(hike)});
     return hikeList;
   }).catch(error => {
       console.error(error);

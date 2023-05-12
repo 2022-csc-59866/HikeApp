@@ -3,3 +3,16 @@
     width: 400px;
     margin: 0 auto; /* Center the map horizontally */
   }
+
+
+  .expanded-content {
+    display: block;
+  }
+  
+  .expanded-content.expanded {
+    display: block;
+  }
+  
+  .expanded-content:not(.expanded) {
+    display: none;
+  }

@@ -3,7 +3,7 @@ import React from "react";
 //routing
 import { Link, useNavigate } from 'react-router-dom';
 
-export const Album = ({ userName, albumId, albumName, coverUrl }) => {
+export const Album = ({ albumId, albumName, coverUrl }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -17,7 +17,7 @@ export const Album = ({ userName, albumId, albumName, coverUrl }) => {
       <div className="album-header">
         <div className='card'>
             <img className="album-cover" src={coverUrl} alt={`${albumName} album`}/>
-            <Link className="link"  onClick={handleSubmit} to={{pathname: "profile/album/" + albumId, state: {albumId}}}>
+            <Link className="link"  onClick={handleSubmit} to={{pathname: "/profile/album/" + albumId, state: {albumId}}}>
               <p className="album-name">{albumName}</p>
             </Link>
         </div>

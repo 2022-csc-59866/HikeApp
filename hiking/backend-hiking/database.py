@@ -10,7 +10,8 @@ DB_PORT_PSQL = config('DB_PORT_PSQL', default='')
 DB_HOST_PSQL = config('DB_HOST_PSQL', default='')
 
 engine = create_engine('postgresql+psycopg2://{}:{}@{}/{}'.format(USERNAME_PSQL, PASSWORD_PSQL, 
-                                                                    DB_HOST_PSQL, DB_NAME_PSQL))
+                                                                    DB_HOST_PSQL, DB_NAME_PSQL),
+                        pool_size=20, max_overflow=10)
     
 #start a session, to connect to Postgres db
 Session = sessionmaker(bind=engine)

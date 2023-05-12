@@ -8,18 +8,14 @@ metadata = Base.metadata
 
 class Album_Hikes(Base):
         __tablename__ = "album_hikes"
-        # all needed to identify a hike
-        hike_name = Column(String(255), nullable=False, primary_key=True)
-        hike_longitude = Column(Float, nullable=False, primary_key=True)
-        hike_latitude = Column(Float, nullable=False, primary_key=True)
-        # album_id = Column(String(255),ForeignKey(User_Albums.album_id), nullable=False, primary_key=True)
+        hike_id = Column(String(255), nullable=False, primary_key=True)
+        hike_api_id = Column(Float)
         album_id = Column(String(255), nullable=False, primary_key=True)
 
         # user_albums = relationship('User_Albums', back_populates='album_hikes')
         # album_hikes = relationship('Hikes', back_populates='album_hikes')
 
-        def __init__(self, hike_name, hike_longitude, hike_latitude, album_id):
-                self.hike_name = hike_name
-                self.hike_latitude = hike_latitude
-                self.hike_longitude = hike_longitude
+        def __init__(self, hike_id, hike_api_id, album_id):
+                self.hike_id = hike_id
+                self.hike_api_id = hike_api_id
                 self.album_id = album_id

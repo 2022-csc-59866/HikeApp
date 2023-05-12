@@ -6,12 +6,10 @@ import "./Hike.css";
 import { Link } from "react-router-dom"
 
 export const Hike = ({hike}) => {
-
-  console.log(hike.lon, hike.lat);
   return (
-        <div class="media" >
-          <span class="rounded" border="1px solid black">
-          <a class="media-left">
+        <div className="media" >
+          <span className="rounded" border="1px solid black">
+          <a className="media-left">
             {hike.thumbnail ? (
             <img src={hike.thumbnail} alt="Hike Thumbnail" />
           ) : (
@@ -19,11 +17,11 @@ export const Hike = ({hike}) => {
           )}
 
           </a>
-          <div class="media-body">
-            <h4 class="media-heading"><Link className="link" to={`/hike/${hike.id}`}>{hike.name}</Link><br/></h4>
-            <h5 class="media-heading">{hike.city}, {hike.region}, {hike.country}</h5>
-            <h5 class="media-heading">Coordinates: {hike.lat}, {hike.lon}</h5>
-            <h5 class="media-heading">Length: {hike.miles}</h5>
+          <div className="media-body">
+            <h4 className="media-heading"><Link className="link" to={`/hike/${hike.apiId}`}>{hike.name}</Link><br/></h4>
+            <h5 className="media-heading">{hike.city}, {hike.state}, {hike.country}</h5>
+            <h5 className="media-heading">Coordinates: {hike.lat}, {hike.lon}</h5>
+            <h5 className="media-heading">Length: {hike.miles}</h5>
           </div>
           </span>
         </div>

@@ -66,17 +66,17 @@ export function HomePage({hikesList}) {
             // index needed to iterate, each hike has its own internal uuid
             hikesLoad.map((hike, index) => {
                 return (
-                <div className="card">
+                <div className="card" key={index}>
                     <Hike
                         hike={hike}
                     /> 
                     <div>
                     {/* Modal per hike */}
                     <div className="Star">
-                        <right><IconButton size='lg' icon={<StarIcon />}
+                        <IconButton size='lg' icon={<StarIcon />}
                         onClick={addToAlbum} 
                         className='modalButton'>
-                        </IconButton></right>
+                        </IconButton>
                     </div>
                     <AlbumsModal 
                     hike = {hike}
