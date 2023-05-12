@@ -11,6 +11,7 @@ function LocalAuthenticate() {
   }
 
   return (
+  <div className="auth-container">
     <div className="local-authenticate">
       {
         currentForm === "login" ? 
@@ -18,7 +19,8 @@ function LocalAuthenticate() {
                         <Register onFormSwitch={toggleForm} />
       }
     </div>
+  </div>
   );
-}
+  }
 
 export default LocalAuthenticate;

@@ -10,9 +10,9 @@ function App() {
   const [hikes, setHikes] = useState([]);
 
   return( <div className="App">
-            <Title setResults={setHikes}/>
-            <Router hikesResults={hikes}/>
-          </div>);
+             <Title setResults={setHikes}/>
+             <Router hikesResults={hikes}/>
+           </div>);
 }
 
 export default App;

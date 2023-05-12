@@ -12,8 +12,6 @@ import { handleHikeList } from '../../services/handleHikeList';
 import  AlbumsModal from "../components/AlbumsModal";
 import { useNavigate } from "react-router";
 
-
-
 //hikesList is a list of hike results passed from search results
 //route is Title -> App -> Body -> HomePage
 export function HomePage({hikesList}) {
@@ -34,6 +32,7 @@ export function HomePage({hikesList}) {
     }
 
     useEffect(() => {
+
         async function getHikesAlabama() {
             const alabamaLat = 32;
             const alabamaLon = -86;
@@ -43,6 +42,7 @@ export function HomePage({hikesList}) {
     
         const createHikesMap = async () => {
             let hikesMap;
+            
             if (hikesList.length === 0) {
                 hikesMap = await getHikesAlabama();
             } else {
@@ -56,6 +56,7 @@ export function HomePage({hikesList}) {
         if (hikesLoad === undefined) {
             return null;
         }
+
     }, [hikesList]);
         
 

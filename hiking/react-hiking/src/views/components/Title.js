@@ -24,18 +24,15 @@ function Title({ setResults }) {
     fetchData(inputValue);
   };
   
-  const redirectToHomePage = () => {
-    window.location.href = '/'; // Redirect to the home page
-  };
-
   const fetchData = (value) => {
     convertLocationToCoord(value)
       .then((coordinates) => {
-        return handleHikeList(coordinates[0], coordinates[1]);
+        //coordinates[0] - longitude
+        //coordinates[1] - latitude
+        return handleHikeList(coordinates[1], coordinates[0]);
       })
       .then((hikeList) => {
         setResults(hikeList);
-        redirectToHomePage();
       });
   };
 
