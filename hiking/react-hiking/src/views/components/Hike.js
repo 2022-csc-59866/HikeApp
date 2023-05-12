@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Maps } from '../components/Maps';
-import { FlaskGetHookUp } from "./FlaskGetHookUp";
 import "./Hike.css";
 
 // router
@@ -13,15 +12,18 @@ export const Hike = ({hike}) => {
         <div class="media" >
           <span class="rounded" border="1px solid black">
           <a class="media-left">
-            <Maps lon={hike.lon} lat={hike.lat}/>
+            {hike.thumbnail ? (
+            <img src={hike.thumbnail} alt="Hike Thumbnail" />
+          ) : (
+            <Maps lon={hike.lon} lat={hike.lat} />
+          )}
+
           </a>
           <div class="media-body">
-            <h4 class="media-heading"><Link className="link" to={`/hike/${hike.lon}/${hike.lat}/${hike.city}/${hike.state}/${hike.country}`}>{hike.name}</Link><br/></h4>
-            <h5 class="media-heading">{hike.city}, {hike.state}, {hike.country}</h5>
+            <h4 class="media-heading"><Link className="link" to={`/hike/${hike.id}`}>{hike.name}</Link><br/></h4>
+            <h5 class="media-heading">{hike.city}, {hike.region}, {hike.country}</h5>
             <h5 class="media-heading">Coordinates: {hike.lat}, {hike.lon}</h5>
-            {hike.description}
-            {/* <right><Star id={hike.id}/></right> */}
-            {/* <right><FlaskGetHookUp/></right> */}
+            <h5 class="media-heading">Length: {hike.miles}</h5>
           </div>
           </span>
         </div>

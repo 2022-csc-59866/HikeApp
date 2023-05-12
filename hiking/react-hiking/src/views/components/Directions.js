@@ -109,7 +109,6 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
       <div className='map-container' ref={mapContainerRef} style={{ height: '400px', width: '400px', justifyContent: 'center' }}></div>
       <div id='directionsPanel' className='directionsPanel'>
         <div className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
-          {/* Content of the expandable element */}
           <h3>Directions</h3>
           <ul id='expandedButton'>
             {directions && directions.routes && directions.routes.length > 0 && (

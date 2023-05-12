@@ -34,27 +34,29 @@ export function HomePage({hikesList}) {
     }
 
     useEffect(() => {
-        //always load hikes in Alabama 
-        async function getHikesAlabama () {
-            const alabamaLon = 32;
-            const alabamaLat = -86;
-            let hikesAlabama = await handleHikeList(alabamaLon, alabamaLat);
+        async function getHikesAlabama() {
+            const alabamaLat = 32;
+            const alabamaLon = -86;
+            let hikesAlabama = await handleHikeList(alabamaLat, alabamaLon);
             return hikesAlabama;
         }
-
+    
         const createHikesMap = async () => {
-            const hikesAlabama = await getHikesAlabama();
-            const hikesMap = hikesAlabama === null ? hikesList : hikesAlabama;
+            let hikesMap;
+            if (hikesList.length === 0) {
+                hikesMap = await getHikesAlabama();
+            } else {
+                hikesMap = hikesList;
+            }
             setHikesLoad(hikesMap);
-          }
-
+        };
+    
         createHikesMap();
-
+    
         if (hikesLoad === undefined) {
             return null;
-          }
-
-    }, [hikesList]); // whats needed in useEffect
+        }
+    }, [hikesList]);
         
 
     return (

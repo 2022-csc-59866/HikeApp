@@ -8,9 +8,6 @@ import logo from '../../img/logo_mountain.png';
 import React from 'react'
 import { useState} from "react";
 
-//routing
-import { useNavigate } from 'react-router-dom';
-
 //services
 import { convertLocationToCoord} from '../../services/convertLocationToCoord';
 import { handleHikeList } from '../../services/handleHikeList';
@@ -68,24 +65,24 @@ function Title({ setResults }) {
           </div>
         </nav>
       </div>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div className="btn-group">
+        <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Menu
         </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <button class="dropdown-item" type="button">
-            <a class="navbar-brand" href="/">Home</a>
+        <div className="dropdown-menu dropdown-menu-right">
+          <button className="dropdown-item" type="button">
+            <a className="navbar-brand" href="/">Home</a>
           </button>
-          <button class="dropdown-item" type="button">
-            <a class="navbar-brand" href="/profile">Profile</a>
+          <button className="dropdown-item" type="button">
+            <a className="navbar-brand" href="/profile">Profile</a>
           </button>
-          <button class="dropdown-item" type="button">
-            <a class="navbar-brand" href="/settings">Settings</a>
+          <button className="dropdown-item" type="button">
+            <a className="navbar-brand" href="/settings">Settings</a>
           </button>
           {isAuthenticated ? (
-            <button class="dropdown-item" type="button"> <a class="navbar-brand" href="/bye">Logout</a></button>
+            <button className="dropdown-item" type="button"> <a className="navbar-brand" href="/bye">Logout</a></button>
           ) : (
-            <button class="dropdown-item" type="button"><a class="navbar-brand" href="/hi">Login</a></button>
+            <button className="dropdown-item" type="button"><a className="navbar-brand" href="/hi">Login</a></button>
           )}
         </div>
       </div>

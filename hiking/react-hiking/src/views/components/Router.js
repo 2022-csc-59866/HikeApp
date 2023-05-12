@@ -25,7 +25,7 @@ function Router({hikesResults}) {
       <Routes>
         <Route exact path="/" element={<HomePage hikesList={hikesResults}/>} />
         <Route exact path="/hi" element={<LocalAuthenticate/>} />
-        <Route exact path="hike/:hikeLon/:hikeLat/:hikeCity/:hikeState/:hikeCountry" element={<HikePage/>} />
+        <Route exact path="hike/:hikeId" element={<HikePage/>} />
         <Route exact path="/test" element = {<TestPage/>} />
         <Route exact path="/profile" element={
           isAuthenticated ? (<ProfilePage />) : (<Navigate to="/hi" />)

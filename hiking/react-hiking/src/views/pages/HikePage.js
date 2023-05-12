@@ -1,40 +1,41 @@
-import { useState, useEffect } from "react"
-
-// router, custom hook to link to a hike
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchHike } from './../../services/fetchHike';
-
+import { fetchBikeTrails } from "../../services/fetchBikeTrails";
 import { Directions } from '../components/Directions';
 import { Maps } from '../components/Maps';
 
 export const HikePage = () => {
+  const { hikeId } = useParams();
+  const [hike, setHike] = useState(null);
 
-    const { hikeLon, hikeLat, hikeCity, hikeState, hikeCountry } = useParams();
-    const [ hike, setHike ] = useState(null);
-	
-	useEffect(() => {
-    //API call to Trail API to fetch hike data
-    async function fetchHikeData(hikeLon, hikeLat, hikeCity, hikeState, hikeCountry) {
-      const hikeData = await fetchHike(hikeLon, hikeLat, hikeCity, hikeState, hikeCountry);
-      setHike(hikeData);
+  useEffect(() => {
+    // Async function to fetch hike data
+    const fetchHikeData = async (hikeId) => {
+      try {
+        const hikeData = await fetchBikeTrails(hikeId);
+        console.log(hikeData);
+        setHike(hikeData);
+      } catch (error) {
+        console.error("Error fetching hike data:", error);
+      }
+    };
+
+    if (hikeId !== undefined) {
+      const id = parseInt(hikeId);
+      fetchHikeData(id);
     }
+  }, [hikeId]);
 
-    fetchHikeData(hikeLon, hikeLat, hikeCity, hikeState, hikeCountry);
-
-	}, [ hikeLon, hikeLat, hikeCity, hikeState, hikeCountry ])
-  
   return (
     <div className="hike-page">
       <div className="card">
-        <Maps lat={hike !== null ? Object.values(hike)[0].lat : ""} lon={hike !== null ? Object.values(hike)[0].lon : ""} />
-        <h1>{ hike !== null ? Object.values(hike)[0].name : ""}</h1>
-        <p>{ hike !== null ? Object.values(hike)[0].description : ""}</p>
-        
+        <Maps lat={hike !== null ? hike.lat : ""} lon={hike !== null ? hike.lon : ""} />
+        <h1>{hike !== null ? hike.name : ""}</h1>
+        <p>{hike !== null ? hike.description : ""}</p>
       </div>
       <div className="card">
-      <Directions hikeLatitude={hike !== null ? Object.values(hike)[0].lat : ""} 
-                    hikeLongitude={hike !== null ? Object.values(hike)[0].lon : ""}/>
+        <Directions hikeLatitude={hike !== null ? hike.lat : ""} hikeLongitude={hike !== null ? hike.lon : ""} />
       </div>
     </div>
-  )
-}
+  );
+};

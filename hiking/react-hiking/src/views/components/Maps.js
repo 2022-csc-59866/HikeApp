@@ -6,10 +6,8 @@ export const Maps = ({lat, lon}) => {
         width="300"
         height="300"
         loading="lazy"
-        allowfullscreen
-        referrerpolicy="no-referrer-when-downgrade"
-        // src={"https://www.google.com/maps/embed/v1/streetview?key=" + GOOGLE_MAPS_EMBED_API_KEY + 
-        //     "&location="+ lat + ", " + lon}>
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
         src={"https://www.google.com/maps/embed/v1/view?key=" + GOOGLE_MAPS_EMBED_API_KEY + 
             "&center=" + lat + "," + lon + "&zoom=18&maptype=satellite"}>
       </iframe></div>
