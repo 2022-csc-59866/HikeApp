@@ -33,4 +33,9 @@ hiking/backend-hiking/services/__pycache__
 hiking/backend-hiking/views/__pycache__
 hiking/backend-hiking/__pycache__
 hiking/backend-hiking/flask_session
+hiking/backend-hiking/views/flask_session
 hiking/backend-hiking/models/__pycache__
+hiking/backend-hiking/__init__.py
+hiking/backend-hiking/views/__init__.py
+hiking/backend-hiking/services/__init__.py
+hiking/backend-hiking/models/__init__.py

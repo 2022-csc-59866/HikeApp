@@ -1,6 +1,5 @@
 from sqlalchemy import Column, String, Float, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, declarative_base
 from models.user_albums_model import User_Albums
 
 Base = declarative_base()

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, DateTime, ForeignKey, BigInteger
 from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, declarative_base
+
 
 from flask_login import UserMixin
 from passlib.hash import pbkdf2_sha256

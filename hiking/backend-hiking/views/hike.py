@@ -10,12 +10,8 @@ blueprint = flask.Blueprint("hike", __name__)
 
 @blueprint.route("/search", methods=["GET"])
 def search():
-    limit = 10
-    if limit in request.args:
-        limit = request.args["limit"]
-
     session = Session()
-    hikes = session.query(Hike).limit(limit).all()
+    hikes = session.query(Hike).all()
     session.close()
     
     return jsonify(serialize_sqlalchemy_objects_to_dictionary(hikes))
@@ -38,15 +34,16 @@ def save_hike():
     # Initialize and populate an Album object with the data submitted by the client
     hike = Hike(api_id=hike_data["api_id"], 
                 name=hike_data["name"],
-                length=hike_data["length"],
-                longitude=hike_data["longitude"],
-                latitude=hike_data["latitude"],
-                city=hike_data["city"], 
-                state=hike_data["state"],
-                country=hike_data["country"],
-                description=hike_data["description"],
+                length=hike_data.get("length"),
+                longitude=hike_data.get("longitude"),
+                latitude=hike_data.get("latitude"),
+                city=hike_data.get("city"), 
+                state=hike_data.get("state"),
+                country=hike_data.get("country"),
+                description=hike_data.get("description"),
                 id=hike_data["id"],
-                thumbnail=hike_data["thumbnail"])
+                thumbnail=hike_data.get("thumbnail"))
+    
 
     # Add the Album to the database and commit the transaction.
     session = Session()

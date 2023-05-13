@@ -27,10 +27,8 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     #add various app configs so that there are no RuntimeErrors from login_mnager
     #secret_key is always different, potentially may be an issue with logged sessions
     app.secret_key = secrets.token_hex(16)
-
     app.config['SESSION_COOKIE_SECURE'] = False
     app.config['SESSION_TYPE'] = "filesystem"
-
     app.session_cookie_name = "session cookie"
 
     #create flask session
@@ -53,8 +51,6 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     # Load the "auth" routes onto the Flask Application. In loading the
     # routes, requests starting with "/auth" will be forwarded to the
     # "auth_blueprint."
-    # TODO: load other blueprints
-
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
     app.register_blueprint(hike_blueprint, url_prefix="/hike")
     app.register_blueprint(album_hikes_blueprint, url_prefix="/album_hikes")
@@ -77,7 +73,6 @@ def create_app(configuration_name: configuration.ConfigurationName) -> flask.app
     @app.teardown_appcontext
     def shutdown_session(exception=None):
         database.session.close()
-
 
     return app
 

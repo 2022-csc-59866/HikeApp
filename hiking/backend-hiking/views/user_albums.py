@@ -63,8 +63,8 @@ def create_custom_empty_album():
     # Initialize and populate an Album object with the data submitted by the client.
     album = User_Albums(album_id=album_data["album_id"], 
                 user_id=album_data["user_id"],
-                album_type=album_data["album_type"], 
-                album_name=album_data["album_name"], )
+                album_type=album_data.get("album_type"), 
+                album_name=album_data.get("album_name"), )
     
     # Add the Album to the database and commit the transaction.
     session = Session()

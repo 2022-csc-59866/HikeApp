@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy import Enum
 from models.transit_type import TransitType
 

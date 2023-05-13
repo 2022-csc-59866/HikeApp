@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from models.album_type import AlbumType
 from models.users_model import User
 from sqlalchemy import Enum

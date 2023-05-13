@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Integer, DateTime, Float
 from sqlalchemy.sql import func
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 import uuid
 
 Base = declarative_base()
@@ -12,8 +12,8 @@ class Hike(Base):
         api_id = Column(Float)
         name = Column(String(255), nullable=False)
         length = Column(String(100))
-        longitude = Column(Float, nullable=False)
-        latitude = Column(Float, nullable=False)
+        longitude = Column(Float)
+        latitude = Column(Float)
         city = Column(String(255))
         state = Column(String(10))
         country = Column(String(100))
