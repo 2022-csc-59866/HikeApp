@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchBikeTrails } from "../../services/fetchBikeTrails";
 import { Directions } from '../components/Directions';
 import { Maps } from '../components/Maps';
+import Loading  from '../components/Loading';
 
 export const HikePage = () => {
   const { hikeId } = useParams();
@@ -26,6 +27,9 @@ export const HikePage = () => {
     }
   }, [hikeId]);
 
+  if (hike === null) {
+    return (<div className="card"><Loading className="hike-loading-container"/></div>)
+  }
   return (
     <div className="hike-page">
       <div className="card">

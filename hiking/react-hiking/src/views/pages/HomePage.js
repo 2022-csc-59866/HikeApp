@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -10,7 +10,7 @@ import StarIcon from '@rsuite/icons/legacy/Star';
 import { Hike } from "../components/Hike";
 import { handleHikeList } from '../../services/handleHikeList';
 import  AlbumsModal from "../components/AlbumsModal";
-import { useNavigate } from "react-router";
+import Loading from '../components/Loading';
 
 //hikesList is a list of hike results passed from search results
 //route is Title -> App -> Body -> HomePage
@@ -60,6 +60,11 @@ export function HomePage({hikesList}) {
     }, [hikesList]);
         
 
+    if (hikesLoad === undefined || hikesLoad.length === 0) {
+        return (<div className="card"><Loading className="home-loading-component" Loading/></div>); 
+        // Return null or a loading indicator while hikesLoad is undefined or empty
+      }
+      
     return (
     <div className="home">
         <div className="container">

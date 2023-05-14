@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//returns the album_name given the album_id
 export function getAlbumInfo(albumId) {
     return axios({
       method: "GET",

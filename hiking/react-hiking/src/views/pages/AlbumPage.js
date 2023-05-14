@@ -1,7 +1,12 @@
-import { Hike } from '../components/Hike';
 import React, { useState, useEffect } from "react";
-import { getHikesInAlbum } from '../../services/getHikesInAlbum';
 import { useLocation } from 'react-router-dom';
+
+//components
+import { Hike } from '../components/Hike';
+import Loading from '../components/Loading';
+
+//services
+import { getHikesInAlbum } from '../../services/getHikesInAlbum';
 import { fetchBikeTrails } from '../../services/fetchBikeTrails';
 import { getAlbumInfo } from '../../services/getAlbumInfo';
 
@@ -34,6 +39,13 @@ export const AlbumPage = () => {
       fetchHikesInAlbum(albumId);
       fetchAlbumDetails(albumId);
     }, [albumId]);
+
+
+    if (hikesInAlbum === undefined) {
+      return (<div className="card"><Loading className="album-page-loading-component" Loading/></div>);
+    } else if (hikesInAlbum.length === 0) {
+      return (<div className="card"> <h1>There are no hikes in album</h1></div>);
+    }
   
     console.log("Album details in component:", albumDetails);
   

@@ -1,7 +1,10 @@
-
 import React, { useEffect, useState } from 'react';
-import { getUserInfo } from '../../services/getUserInfo';
 
+//components
+import Loading from './Loading';
+
+//services
+import { getUserInfo } from '../../services/getUserInfo';
 
 export const Profile = ({completedHikes, bio}) => {
   const [userInfo, setUserInfo] = useState(null);
@@ -21,8 +24,7 @@ export const Profile = ({completedHikes, bio}) => {
   }, []);
 
   if (!userInfo) {
-    // Render loading state or placeholder while waiting for the response
-    return <div>Loading...</div>;
+    return <div className='card'><Loading className="profile-loading-container" /></div>;
   }
 
   return (

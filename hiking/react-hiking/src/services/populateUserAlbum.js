@@ -9,9 +9,10 @@ import { getHikesInAlbum} from './getHikesInAlbum';
 
     //async call to GET "/album_hikes/get_all"
     //lookup hikes by album_id
-    const hikesInAlbum = await getHikesInAlbum(albumInfo.album_id);
+    // const hikesInAlbum = await getHikesInAlbum(albumInfo.album_id);
 
     //create a hike js object
-    const album = new Album_obj(albumInfo.album_id, albumInfo.album_name, hikesInAlbum, albumInfo.user_id, albumInfo.album_type);
+    const album = new Album_obj(albumInfo.album_id, albumInfo.album_name, [], albumInfo.user_id, albumInfo.album_type);
+    // const album = new Album_obj(albumInfo.album_id, albumInfo.album_name, hikesInAlbum, albumInfo.user_id, albumInfo.album_type);
     return album;
   }
