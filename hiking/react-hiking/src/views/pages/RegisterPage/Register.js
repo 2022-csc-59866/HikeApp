@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 //functions
-import { signup } from "../../services/signup";
-import { pickRandomAvatar } from "../../services/pickRandomAvatar";
+import { signup } from "../../../services/signup";
+import { pickRandomAvatar } from "../../../services/pickRandomAvatar";
 
 export const Register = (props) => {
     const [email, setEmail] = useState('');

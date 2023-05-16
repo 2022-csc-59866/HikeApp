@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
+
+//routing
 import { useParams } from "react-router-dom";
-import { fetchBikeTrails } from "../../services/fetchBikeTrails";
-import { Directions } from '../components/Directions';
-import { Maps } from '../components/Maps';
-import Loading  from '../components/Loading';
+
+//components
+import { Directions } from '../../components/Directions/Directions';
+import { Maps } from '../../components/Maps/Maps';
+import Loading  from '../../components/Loading/Loading';
+
+//services
+import { fetchBikeTrails } from "../../../services/fetchBikeTrails";
 
 export const HikePage = () => {
   const { hikeId } = useParams();

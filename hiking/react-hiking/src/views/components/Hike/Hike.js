@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Maps } from '../components/Maps';
+import { Maps } from '../../components/Maps/Maps';
 import "./Hike.css";
 
 // router

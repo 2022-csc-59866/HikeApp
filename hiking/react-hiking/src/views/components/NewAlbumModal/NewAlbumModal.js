@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import logo from '../../img/logo_mountain.png';
+import logo from '../../../img/logo_mountain.png';
 
-import { addNewAlbum } from '../../services/addNewAlbum';
+import { addNewAlbum } from '../../../services/addNewAlbum';
  
 export const NewAlbumModal = ({ open, onClose }) => {
     

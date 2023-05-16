@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './HomePage.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+//routing
+import { useNavigate } from "react-router";
+
+//buttons
 import { IconButton} from 'rsuite';
 import StarIcon from '@rsuite/icons/legacy/Star';
 
 // components
-import { Hike } from "../components/Hike";
-import { handleHikeList } from '../../services/handleHikeList';
-import  AlbumsModal from "../components/AlbumsModal";
-import Loading from '../components/Loading';
+import { Hike } from "../../components/Hike/Hike";
+import { handleHikeList } from '../../../services/handleHikeList';
+import  AlbumsModal from "../../components/AlbumsModal/AlbumsModal";
+import Loading from '../../components/Loading/Loading';
 
 //hikesList is a list of hike results passed from search results
 //route is Title -> App -> Body -> HomePage

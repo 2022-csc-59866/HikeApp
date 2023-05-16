@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import logo from '../../img/logo_mountain.png';
+import logo from '../../../img/logo_mountain.png';
 import "./AlbumsModal.css";
 
 //services

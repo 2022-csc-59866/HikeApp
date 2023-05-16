@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
+
+//routing
 import { useLocation } from 'react-router-dom';
 
 //components
-import { Hike } from '../components/Hike';
-import Loading from '../components/Loading';
+import { Hike } from '../../components/Hike/Hike';
+import Loading from '../../components/Loading/Loading';
 
 //services
-import { getHikesInAlbum } from '../../services/getHikesInAlbum';
-import { fetchBikeTrails } from '../../services/fetchBikeTrails';
-import { getAlbumInfo } from '../../services/getAlbumInfo';
+import { getHikesInAlbum } from '../../../services/getHikesInAlbum';
+import { fetchBikeTrails } from '../../../services/fetchBikeTrails';
+import { getAlbumInfo } from '../../../services/getAlbumInfo';
 
 export const AlbumPage = () => {
     const [hikesInAlbum, setHikesInAlbum] = useState([]);

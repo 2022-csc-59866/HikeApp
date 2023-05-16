@@ -1,22 +1,20 @@
+import { useEffect, useState } from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import './ProfilePage.css';
 
-import { useEffect } from 'react';
+//images
+import fav from "../../../img/fav.svg"
+import mountain from "../../../img/mountain.svg"
+
+//functions
+import { getAlbumIdInfoForUser } from '../../../services/getAlbumIdInfoForUser';
 
 // components
-import { Profile } from "../components/Profile";
-import { Album } from "../components/Album";
-import { NewAlbumModal } from '../components/NewAlbumModal';
-import { useState } from 'react';
-
-//images
-import fav from "../../img/fav.svg"
-import mountain from "../../img/mountain.svg"
-
-//services
-import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
-
+import { Profile } from "../../components/Profile/Profile";
+import { Album } from "../../components/Album/Album";
+import { NewAlbumModal } from '../../components/NewAlbumModal/NewAlbumModal';
 
 export const ProfilePage = () => {
     const [openModal, setOpenModal] = useState(false);

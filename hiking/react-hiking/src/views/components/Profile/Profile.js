@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 //components
-import Loading from './Loading';
+import Loading from '../Loading/Loading';
 
 //services
-import { getUserInfo } from '../../services/getUserInfo';
+import { getUserInfo } from '../../../services/getUserInfo';
 
 export const Profile = ({completedHikes, bio}) => {
   const [userInfo, setUserInfo] = useState(null);

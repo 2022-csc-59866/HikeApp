@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Login } from "./Login";
-import { Register } from "./Register";
 import './LocalAuthenticate.css';
+
+//pages
+import { Login } from "../Login/Login";
+import { Register } from "../RegisterPage/Register";
 
 function LocalAuthenticate() {
   const [currentForm, setCurrentForm] = useState('login');

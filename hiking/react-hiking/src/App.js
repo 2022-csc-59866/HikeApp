@@ -1,9 +1,12 @@
-import './App.css';
 import React from 'react';
-import Title from './views/components/Title';
-import Router from './views/components/Router';
+import './App.css';
 
+//routing
 import { useState} from "react";
+
+//components
+import Title from './views/components/Title/Title';
+import Router from './views/components/Router/Router';
 
 function App() {
   //pass hike results from search bar to body/home page

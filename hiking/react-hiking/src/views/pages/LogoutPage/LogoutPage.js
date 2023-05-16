@@ -1,8 +1,10 @@
 import React from "react";
 
-//functions
-import { logout } from "../../services/logout";
-import { Profile } from "../components/Profile";
+//services
+import { logout } from "../../../services/logout";
+
+//components
+import { Profile } from "../../components/Profile/Profile";
 
 export const LogoutPage = () => {;
 

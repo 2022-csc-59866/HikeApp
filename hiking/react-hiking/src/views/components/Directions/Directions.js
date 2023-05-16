@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { getBrowserLocation } from '../../services/getBrowserLocation';
+import { getBrowserLocation } from '../../../services/getBrowserLocation';
 import './Directions.css';
 
 const GOOGLE_MAPS_EMBED_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_EMBED_API_KEY;

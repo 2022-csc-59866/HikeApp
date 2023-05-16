@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //functions
-import { login } from "../../services/login";
+import { login } from "../../../services/login";
 
 export const Login = (props) => {
 

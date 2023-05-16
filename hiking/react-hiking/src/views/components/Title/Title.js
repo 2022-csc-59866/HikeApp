@@ -1,16 +1,16 @@
-import './Title.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
-//img
-import logo from '../../img/logo_mountain.png';
-
 import React from 'react'
 import { useState} from "react";
 
+import './Title.css';
+
+//img
+import logo from '../../../img/logo_mountain.png';
+
 //services
-import { convertLocationToCoord} from '../../services/convertLocationToCoord';
-import { handleHikeList } from '../../services/handleHikeList';
+import { convertLocationToCoord} from '../../../services/convertLocationToCoord';
+import { handleHikeList } from '../../../services/handleHikeList';
 
 function Title({ setResults }) {
   const [inputValue, setInputValue] = useState('');
