@@ -9,7 +9,7 @@ metadata = Base.metadata
 class Hike(Base):
         __tablename__ = "hikes"
         id = Column(Integer, nullable=False, primary_key=True)
-        api_id = Column(Float)
+        api_id = Column(Integer)
         name = Column(String(255), nullable=False)
         length = Column(String(100))
         longitude = Column(Float)

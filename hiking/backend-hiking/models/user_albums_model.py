@@ -9,7 +9,7 @@ metadata = Base.metadata
 
 class User_Albums(Base):
         __tablename__ = "user_albums"
-        user_id = Column(String(255), ForeignKey(User.id), nullable=False, primary_key=True)
+        user_id = Column(String(255), ForeignKey(User.id), nullable=False)
         album_id = Column(String(255),nullable=False, primary_key=True)
         album_name = Column(String(255), nullable=False)
         album_type = Column(Enum(AlbumType), nullable=False)
