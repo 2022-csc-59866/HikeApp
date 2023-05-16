@@ -3,9 +3,9 @@ import logo from '../../../img/logo_mountain.png';
 import "./AlbumsModal.css";
 
 //services
-import { populateUserAlbum } from '../../services/populateUserAlbum';
-import { getAlbumIdInfoForUser } from '../../services/getAlbumIdInfoForUser';
-import { addHikeToAlbum } from '../../services/addHikeToAlbum';
+import { populateUserAlbum } from '../../../services/populateUserAlbum';
+import { getAlbumIdInfoForUser } from '../../../services/getAlbumIdInfoForUser';
+import { addHikeToAlbum } from '../../../services/addHikeToAlbum';
 
 const AlbumsModal = ({ hike, open, onClose }) => {
   const [albumsList, setAlbumsList] = useState([]);
