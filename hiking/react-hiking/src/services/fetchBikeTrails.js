@@ -2,6 +2,9 @@ import axios from 'axios';
 import { populateHikes } from './populateHikes';
 
 //use BikeTrailInfo endpoint to look up hike by ID
+// NOTE: hike ID comes as part of a response from the same TrailAPI different endpoint
+// hike IDs are not always the same between endpoints
+
 export async function fetchBikeTrails(id) {
     return axios({
       method: 'GET',

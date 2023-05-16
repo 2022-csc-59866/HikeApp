@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from "react";
 
+//for db testing only
 export function FlaskGetHookUp() {
     //how to connect to flask
     const [hikeData, setHikeData] = useState(null)

@@ -1,3 +1,4 @@
+//get user location using browser utils
 export function getBrowserLocation() {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {

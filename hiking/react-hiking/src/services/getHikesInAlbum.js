@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+// get all hikes saved in album
 export function getHikesInAlbum(albumId) {
 
     return axios({

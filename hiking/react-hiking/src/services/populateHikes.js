@@ -1,6 +1,6 @@
 import Hike_obj from "./Hike_obj";
 
-  //get a list of hikes
+  //get a list of hikes and return a hike object
   export function populateHikes (body){
 
     let hikesList = [];

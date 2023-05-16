@@ -23,7 +23,6 @@ export function signup({firstName, lastName, email, password, avatarUrl}) {
             console.log(res);
             localStorage.setItem('session_cookie_name', response.data["cookie"]);
             //redirect to user page
-            //TODO: currently hardcoded
             window.location.href = `http://localhost:3000/profile/`;
         }).catch((error) => {
             console.log(error.response);

@@ -1,3 +1,4 @@
+// pick a random avatar for user upon signing up
 export function pickRandomAvatar() {
 
     const avatarImages = [

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//logout user
 export function logout() {
 
     function logoutUser() {
