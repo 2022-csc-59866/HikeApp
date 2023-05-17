@@ -42,32 +42,29 @@ NOTE: They can also use a Google account to sign up. However, since the website 
 
 - [x] Users can browse bike trails from the home page.
 
-![Home Page](https://[media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/home-page.gif))
+![Home Page](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/home-page.gif)
 
 - [x] Users can search for bike trails near them on the home page.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/home-page-search.gif' title='Home Page Search Walkthrough' width='' alt='Home Page Search Walkthrough' />
+![Home Page Search](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/home-page-search.gif)
 
 - [x] Users can sign up.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/signup.gif' title='Signup Walkthrough' width='' alt='Signup Walkthrough' />
+![Signup](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/signup.gif)
 
 - [x] Users can login.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/signin.gif' title='Login Walkthrough' width='' alt='Login Walkthrough' />
+![Login](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/signin.gif)
 
 - [x] Users can logout.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/logout.gif' title='Logout Walkthrough' width='' alt='Logout Walkthrough' />
+![Logout](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/logout.gif)
 
 - [x] Users can create albums from their Profile page.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/new-album.gif' title='Create an Album Walkthrough' width='' alt='Create an Album Walkthrough' />
+![Create an Album](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/new-album.gif)
 
 - [x] Users can save trails they like in album folders from the home page. 
-<img src='https://github.com/lyloster/Hike-app-recordings/add-hikes.gif' title='Add Trails to Album Walkthrough' width='' alt='Add Trails to Album Walkthrough' />
-
 - [x] Users can browse bike trails they saved from their Profile page where they are redirected to choose an Album page.
-<img src='https://github.com/lyloster/Hike-app-recordings/hike-page.gif' title='Hike Page Walkthrough' width='' alt='Hike Page Walkthrough' />
+![Add Trails to Album & Browse Album](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/add-hikes.gif)
 
 - [x] Users can browse bike trails details either from the home page or from the album page.
 - [x] Each bike trail displays some relevant information as well as directions.
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/hike-details.gif' title='Trail Details Walkthrough' width='' alt='Trail Details Walkthrough' />
-
+![Trail Page](https://github.com/2022-csc-59866/HikeApp/blob/main/Hike-app-recordings/hike-details.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
