@@ -60,7 +60,7 @@ NOTE: They can also use a Google account to sign up. However, since the website 
 <img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/new-album.gif' title='Create an Album Walkthrough' width='' alt='Create an Album Walkthrough' />
 
 - [x] Users can save trails they like in album folders from the home page. 
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/add-hikes.gif' title='Add Trails to Album Walkthrough' width='' alt='Add Trails to Album Walkthrough' />
+<img src='https://github.com/lyloster/Hike-app-recordings/add-hikes.gif' title='Add Trails to Album Walkthrough' width='' alt='Add Trails to Album Walkthrough' />
 
 - [x] Users can browse bike trails they saved from their Profile page where they are redirected to choose an Album page.
 <img src='https://github.com/lyloster/Hike-app-recordings/hike-page.gif' title='Hike Page Walkthrough' width='' alt='Hike Page Walkthrough' />
