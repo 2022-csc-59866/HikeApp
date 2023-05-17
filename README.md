@@ -42,7 +42,7 @@ NOTE: They can also use a Google account to sign up. However, since the website 
 
 - [x] Users can browse bike trails from the home page.
 
-<img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/home-page.gif' title='Home Page Walkthrough' width='' alt='Home Page Walkthrough' />
+![](home-page.gif)
 
 - [x] Users can search for bike trails near them on the home page.
 <img src='https://github.com/lyloster/Hike-app/Hike-app-recordings/home-page-search.gif' title='Home Page Search Walkthrough' width='' alt='Home Page Search Walkthrough' />
