@@ -20,15 +20,20 @@ import Loading from '../../components/Loading/Loading';
 //route is Title -> App -> Body -> HomePage
 export function HomePage({hikesList}) {
     const [openModal, setOpenModal] = useState(false);
+    //state needed to save the correct hike in album
+    const [openHikeApiId, setHikeApiId] = useState();
+    const [openHikeId, setHikeId] = useState();
     const [hikesLoad, setHikesLoad] = useState([]); 
     const navigate = useNavigate();
 
     //check if there is a cookie for the user
     const isAuthenticated = localStorage.getItem('session_cookie_name');
 
-    function addToAlbum() {
+    function addToAlbum(api_id, id) {
         //user is authenticated -> open modal
         if (isAuthenticated) {
+            setHikeApiId(api_id);
+            setHikeId(id);
             setOpenModal(true);
         } else { //user is not authenticated, there is no session, navigate to login
             navigate("/hi");
@@ -80,23 +85,23 @@ export function HomePage({hikesList}) {
                     <Hike
                         hike={hike}
                     /> 
-                    <div>
-                    {/* Modal per hike */}
                     <div className="Star">
                         <IconButton size='lg' icon={<StarIcon />}
-                        onClick={addToAlbum} 
+                        onClick={() => addToAlbum(hike.apiId, hike.id)} 
                         className='modalButton'>
                         </IconButton>
-                    </div>
-                    <AlbumsModal 
-                    hike = {hike}
-                    open={openModal} 
-                    onClose={() => setOpenModal(false)} />
-                    </div>
+                    </div>     
                 </div>
                 )
             })
         }
+            <div>
+                <AlbumsModal 
+                hike_id = {openHikeId}
+                hike_api_id = {openHikeApiId}
+                open={openModal} 
+                onClose={() => setOpenModal(false)} />
+            </div>
         </div>
     </div>
     )

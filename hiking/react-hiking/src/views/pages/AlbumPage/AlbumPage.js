@@ -25,7 +25,7 @@ export const AlbumPage = () => {
   
         const hikesData = [];
         for (const hike of hikes) {
-          const hikeData = await fetchBikeTrails(Math.floor(hike.hike_api_id));
+          const hikeData = await fetchBikeTrails(hike.hike_api_id);
           hikesData.push(hikeData);
         }
         setHikesInAlbum(hikesData);

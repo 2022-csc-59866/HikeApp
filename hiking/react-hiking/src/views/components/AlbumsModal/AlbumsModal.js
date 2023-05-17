@@ -7,16 +7,18 @@ import { populateUserAlbum } from '../../../services/populateUserAlbum';
 import { getAlbumIdInfoForUser } from '../../../services/getAlbumIdInfoForUser';
 import { addHikeToAlbum } from '../../../services/addHikeToAlbum';
 
-const AlbumsModal = ({ hike, open, onClose }) => {
+const AlbumsModal = ({ hike_id, hike_api_id, open, onClose }) => {
   const [albumsList, setAlbumsList] = useState([]);
   const [feedbackMessage, setFeedbackMessage] = useState('');
 
   useEffect(() => {
     const getAlbumsList = async () => {
       const userId = localStorage.getItem('session_cookie_name');
+      //loads all user albums in modal
       const albumsInfo = await getAlbumIdInfoForUser(userId);
 
       const albumDisplayList = [];
+      //display albums in a list
       for (const albumInfo of albumsInfo) {
         const album = await populateUserAlbum({ albumInfo });
         albumDisplayList.push(album);
@@ -34,10 +36,10 @@ const AlbumsModal = ({ hike, open, onClose }) => {
     return null;
   }
 
-  const handleAddToAlbum = async (hike, album) => {
+  const handleAddToAlbum = async (hike_id, hike_api_id, album) => {
     try {
       // Perform the addHikeToAlbum function here
-      await addHikeToAlbum(hike, album);
+      await addHikeToAlbum(hike_id, hike_api_id, album);
       // Set the feedback message to indicate success
       setFeedbackMessage(`Hike added to the ${album.album_name} successfully!`);
     } catch (error) {
@@ -64,7 +66,7 @@ const AlbumsModal = ({ hike, open, onClose }) => {
             <div className='albumList'>
               {albumsList.map((album, index) => (
                 <div className="card" key={index}>
-                  <button onClick={() => handleAddToAlbum(hike, album)}>{album.album_name}</button>
+                  <button onClick={() => handleAddToAlbum(hike_id, hike_api_id, album)}>{album.album_name}</button>
                 </div>
               ))}
             </div>

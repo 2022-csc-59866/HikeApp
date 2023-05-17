@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, DateTime, ForeignKey, BigInteger
 from sqlalchemy.sql import func
-from sqlalchemy.orm import relationship, declarative_base
+from sqlalchemy.orm import declarative_base
 
 
 from flask_login import UserMixin
@@ -37,8 +37,6 @@ class User(UserMixin, Base):
                             server_default=func.now(),
                             onupdate=func.now())
         
-        # transit = relationship('Transit', back_populates='users', foreign_keys=user_id)
-
         def __init__(self, first_name, middle_name, last_name, 
                      email, password, cookie, avatar_url,
                      city=None, state=None, country=None):
