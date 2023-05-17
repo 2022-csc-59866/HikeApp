@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 //routing
 import { useParams } from "react-router-dom";
 
+import ScrollToTop from "react-scroll-to-top";
+
 //components
 import { Directions } from '../../components/Directions/Directions';
 import { Maps } from '../../components/Maps/Maps';
@@ -46,6 +48,7 @@ export const HikePage = () => {
       <div className="card">
         <Directions hikeLatitude={hike !== null ? hike.lat : ""} hikeLongitude={hike !== null ? hike.lon : ""} />
       </div>
+      <ScrollToTop className="scroll" smooth color="#5D9C59"  viewBox="256 256 1024 1024"/>
     </div>
   );
 };

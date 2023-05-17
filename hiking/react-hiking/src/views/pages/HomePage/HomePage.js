@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import './HomePage.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ScrollToTop from "react-scroll-to-top";
 //routing
 import { useNavigate } from "react-router";
 
@@ -102,6 +102,7 @@ export function HomePage({hikesList}) {
                 open={openModal} 
                 onClose={() => setOpenModal(false)} />
             </div>
+            <ScrollToTop className="scroll" smooth color="#5D9C59"  viewBox="256 256 1024 1024"/>
         </div>
     </div>
     )

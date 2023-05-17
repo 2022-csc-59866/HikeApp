@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 //routing
 import { useLocation } from 'react-router-dom';
 
+import ScrollToTop from "react-scroll-to-top";
+
 //components
 import { Hike } from '../../components/Hike/Hike';
 import Loading from '../../components/Loading/Loading';
@@ -63,6 +65,7 @@ export const AlbumPage = () => {
             );
           })}
         </div>
+        <ScrollToTop className="scroll" smooth color="#5D9C59"  viewBox="256 256 1024 1024"/>
       </div>
     );
   };

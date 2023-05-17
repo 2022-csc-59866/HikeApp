@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import './ProfilePage.css';
 
+import ScrollToTop from 'react-scroll-to-top';
+
 //images
 import fav from "../../../img/fav.svg"
 import mountain from "../../../img/mountain.svg"
@@ -78,6 +80,7 @@ export const ProfilePage = () => {
                 </div>
             </div>
         }
+        <ScrollToTop className="scroll" smooth color="#5D9C59"  viewBox="256 256 1024 1024"/>
         </div>
     </div>
     )
