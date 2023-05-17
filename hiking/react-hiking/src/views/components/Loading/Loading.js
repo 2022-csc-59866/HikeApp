@@ -9,6 +9,7 @@ export default function Loading() {
         color="#5D9C59"
         height={100}
         width={50}
+        data-testid="loading-spinner"
       />
     </div>
   );

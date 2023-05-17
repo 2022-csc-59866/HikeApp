@@ -18,7 +18,7 @@ export const NewAlbumModal = ({ open, onClose }) => {
     }
 
   return (
-    <div onClick={onClose} className='overlay'>
+    <div onClick={onClose} className='overlay' data-testid='new-album-modal'>
       <div
         onClick={(e) => {
           e.stopPropagation();
@@ -27,14 +27,15 @@ export const NewAlbumModal = ({ open, onClose }) => {
       >
         <img src={logo} alt='/' />
         <div className='modalRight'>
-          <p className='closeBtn' onClick={onClose}>
+          <p className='closeBtn' data-testid='close-modal' onClick={onClose}>
             X
           </p>
           <div className='content'>
             <h2>Create a New Album</h2>
-            <form className=" new-album-form" onSubmit={handleSubmit}>
+            <form className=" new-album-form" data-testid='create-album' onSubmit={handleSubmit}>
                 <label htmlFor="name">Album name</label>
-                <input value={albumName} onChange={(e) => setAlbumName(e.target.value)}type="name" placeholder="Album Name" id="album-name" name="album-name" />
+                <input value={albumName} data-testid='album-name' 
+                      onChange={(e) => setAlbumName(e.target.value)}type="name" placeholder="Album Name" id="album-name" name="album-name" />
                 <button type="submit">Create Album</button>
             </form>
           </div>

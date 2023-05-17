@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://127.0.0.1:5000",
   "//": "proxy: http://localhost:5000 needed for flask routing, errors with npm install",
+  "type": "module",
   "dependencies": {
     "@react-google-maps/api": "^2.18.1",
     "@rsuite/icons": "^1.0.2",
@@ -49,5 +50,20 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-react": "^7.18.6",
+    "babel-jest": "^29.5.0",
+    "dotenv": "^16.0.3",
+    "jest": "^27.5.1"  
   }
+  ,
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  }
+  
 }
