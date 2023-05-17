@@ -60,7 +60,7 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
         directionsRendererRef.current.setDirections(response);
         setDirections(response);
       } else if (status === 'ZERO_RESULTS') {
-        setDirections("No route");
+        return(<div>No directions availble</div>);
       }
     });
   }, []);
