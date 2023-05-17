@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { getBrowserLocation } from '../../../services/getBrowserLocation';
 import './Directions.css';
+
+//components 
+import Loading from '../Loading/Loading';
+
+//services
+import { getBrowserLocation } from '../../../services/getBrowserLocation';
 
 const GOOGLE_MAPS_EMBED_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_EMBED_API_KEY;
 
@@ -10,29 +15,11 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
   const [hikeLocation, setHikeLocation] = useState(null);
   const [currentLocation, setCurrentLocation] = useState(null);
   const [directions, setDirections] = useState(null);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [isMapReady, setIsMapReady] = useState(false);
 
   const mapContainerRef = useRef(null);
   const directionsServiceRef = useRef(null);
   const directionsRendererRef = useRef(null);
-
-  const handleExpand = () => {
-    if (isExpanded) {
-      // If expanding, no need to reset directions state
-      setIsExpanded(false);
-    } else {
-      // If collapsing, reset directions state
-      setIsExpanded(true);
-      setDirections(null);
-    }
-  };
-
-  const directionsOptions = {
-    destination: currentLocation,
-    origin: hikeLocation,
-    travelMode: 'DRIVING'
-  };
 
   function loadGoogleMapsAPI() {
     const script = document.createElement('script');
@@ -112,24 +99,25 @@ export function Directions({ hikeLatitude, hikeLongitude }) {
         </select>
       </div>
       <div className='map-container' ref={mapContainerRef} style={{ height: '400px', width: '400px', justifyContent: 'center' }}></div>
-      <div><h3>Directions</h3></div>
+      <h3>Directions</h3>
       <div id='directionsPanel' className='directionsPanel'>
-      <div className={`expandable-content ${isExpanded ? 'expanded' : ''}`}>
-        <ul id='expandedButton'>
-          {isExpanded &&
-            directions &&
-            directions.routes &&
-            directions.routes.length > 0 &&
-            directions.routes[0].legs.map((leg, index) => (
-              <li key={index}>
-                <strong>Step {index + 1}:</strong> {leg.distance.text}, {leg.duration.text}<br />
-                {leg.instructions}
-              </li>
-            ))}
+        <ul>
+          {directions &&
+          directions.routes &&
+          directions.routes.length > 0 ? (
+            <>
+              {directions.routes[0].legs.map((leg, index) => (
+                <li key={index}>
+                  {leg.distance.text}, {leg.duration.text}<br />
+                  {leg.instructions}
+                </li>
+              ))}
+            </>
+          ) : (
+            <div className="loading-directions"><Loading /> </div>
+          )}
         </ul>
       </div>
-      <button onClick={handleExpand}>{isExpanded ? 'Collapse' : 'Expand'}</button>
-    </div>
     </div>
   );
   
